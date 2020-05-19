@@ -1,11 +1,11 @@
 import React from 'react'; 
 import d3tip from 'd3-tip';
 import * as d3 from 'd3';
-// import FixedData from './data_fixit'
-
 import jquery from 'jquery';
-import * as jquery_ui_bundle from 'jquery-ui-bundle';
-
+import * as jqueryui from 'jquery-ui-bundle';
+import "./stylesheets/jquery-ui.min.css";
+import "./stylesheets/jquery-ui.structure.min.css";
+import "./stylesheets/jquery-ui.theme.min.css";
 
 const margin = { left: 80, right: 100, top: 50, bottom: 100 };
 const width = 800 - margin.left - margin.right,
@@ -60,13 +60,20 @@ class Graph extends React.Component {
 
     this.state = {
       dataLoaded: false,
+      playButton: "Play"
     };
 
-    // this.update = this.update.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchAllStates().then(() => this.setState({ dataLoaded: true }));
+  }
+
+  handleClick() {
+    return e => {
+      (this.state.playButton === "Play") ? (this.setState({playButton: "Pause"})) : (this.setState({playButton: "Play"}))
+    }
   }
 
   render() {
@@ -78,14 +85,13 @@ class Graph extends React.Component {
       .append("g")
       .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
 
-    var time = 0; // NOTE IT'S IMPORTANT TO KEEP MS LOWER THAN LOOP'S DELAY
-    var interval;
-    var workingData = {};
-
     //  GRAPH SCALES & LABELS
     var x = d3.scaleLog().base(10).range([0, width]).domain([100, 10000000]);
     var y = d3.scaleLinear().range([height, 0]).domain([0, 100]);
     var area = d3.scaleLinear().range([25 * Math.PI, 1000 * Math.PI]).domain([0, 250000]);
+
+    var time = 0; // NOTE IT'S IMPORTANT TO KEEP MS LOWER THAN LOOP'S DELAY
+    var interval;
 
     var xLabel = g
       .append("text")
@@ -138,37 +144,25 @@ class Graph extends React.Component {
       .html(function (d) {
         var text =
           "<span style='font-size:14px;'>Name:</span> <span style='color:blue;text-transform:capitalize;font-weight:600;'>" +
-          d.state +
-          "</span><br>";
+          d.state + "</span><br>";
         text +=
           "<span style='font-size:14px;'>Data Period:</span> <span style='color:blue;font-weight:600;'>" +
-          DateTable[d.table] +
-          "</span><br>";
+          DateTable[d.table] + "</span><br>";
         text +=
           "<span style='font-size:14px;'>Total Number of Colonies:</span> <span style='color:blue;font-weight:600;'>" +
-          d3.format(",.0f")(d.total) +
-          " Colonies" +
-          "</span><br>";
+          d3.format(",.0f")(d.total) + " Colonies" + "</span><br>";
         text +=
           "<span style='font-size:14px;'>Lost Colonies:</span> <span style='color:red;font-weight:600;'>" +
-          d3.format(",.0f")(d.lost) +
-          " Colonies" +
-          "</span><br>";
+          d3.format(",.0f")(d.lost) + " Colonies" + "</span><br>";
         text +=
           "<span style='font-size:14px;'>Percent Lost:</span> <span style='color:red;font-weight:600;'>" +
-          d.percent_lost +
-          "%" +
-          "</span><br>";
+          d.percent_lost + "%" + "</span><br>";
         text +=
           "<span style='font-size:14px;'>Added:</span> <span style='color:purple;font-weight:600;'>" +
-          d3.format(",.0f")(d.added) +
-          " Colonies" +
-          "</span><br>";
+          d3.format(",.0f")(d.added) + " Colonies" + "</span><br>";
         text +=
           "<span style='font-size:14px;'>Renovated:</span> <span style='color:purple;font-weight:600;'>" +
-          d3.format(",.0f")(d.renovated) +
-          " Colonies" +
-          "</span><br>";
+          d3.format(",.0f")(d.renovated) + " Colonies" + "</span><br>";
         return text;
       });
 
@@ -204,6 +198,18 @@ class Graph extends React.Component {
           .text(percentRange);
       });
 
+      jquery("#date-slider").slider({
+        max: 16,
+        min: 1,
+        step: 1,
+        value: 1,
+        slide: function (event, ui) {
+          // time = ui.value - 1;
+          update(workingData[ui.value - 1]);
+        },
+      });
+
+     var workingData = {};
 
       for (let state in this.props.allStates) {
         if (!this.props.allStates.hasOwnProperty(state)) {
@@ -227,12 +233,15 @@ class Graph extends React.Component {
         update(workingData[0])
       }
 
+   
+
     function update(data) {
       var t = d3.transition().duration(250);
+    
 
        var percentRange = jquery("#percentRange-select").val();
 
-       var data = data.filter(function (d) {
+       var data = data.filter(function(d) {
          if (percentRange === "all") {
            return true;
          } else if (percentRange >= 10) {
@@ -281,25 +290,26 @@ class Graph extends React.Component {
         timeLabel.text(QuarterTable[time + 1]);
 
         jquery("#period")[0].innerHTML = +(time + 1);
+        jquery("#date-slider").slider("value", time + 1);
       }
 
-      jquery("#play-button").on("click", function () {
-        var button = jquery(this);
-        if (button.text() === "Play") {
-          button.text("Pause");
+      jquery("#play-button").on("click", function() {
+
+        if (jquery("#play-button").val() === "Play") {
+          jquery("#play-button").text("Pause");
           interval = setInterval(step, 500);
         } else {
-          button.text("Play");
+          jquery("#play-button").text("Play");
           clearInterval(interval);
         }
       });
 
-      jquery("#reset-button").on("click", function () {
+      jquery("#reset-button").on("click", function() {
         time = 0;
         update(workingData[0]);
       });
 
-      jquery("#percentRange-select").on("change", function () {
+      jquery("#percentRange-select").on("change", function() {
         update(workingData[time]);
       });
 
@@ -307,15 +317,12 @@ class Graph extends React.Component {
         time = time < 16 ? time + 1 : 0; // ONCE GO THROUGH ALL DATA, LOOP BACK
         update(workingData[time]);
       } 
-
-      
-    
-      
+  
       console.log(workingData);
 
       return (
         <div>
-          <button id="play-button">Play</button>
+          <button onClick={this.handleClick()} id="play-button" value={this.state.playButton}>Play</button>
           <button id="reset-button">Reset</button>
 
           <div id="slider-div">
