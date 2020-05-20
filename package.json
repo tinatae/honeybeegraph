@@ -1,6 +1,10 @@
 {
   "name": "honeybeeproject",
   "version": "1.0.0",
+  "engines": {
+    "node": "10.13.0",
+    "npm": "6.14.4"
+  },
   "description": "",
   "main": "app.js",
   "scripts": {
