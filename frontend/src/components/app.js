@@ -1,12 +1,11 @@
 import React from "react";
 import { Route } from "react-router-dom";
 
-import GraphContainer from "./graph_container"; //
+import DataContainer from "./data_container";
+
 
 const App = () => (
-  <div>
-      <Route exact path="/" component={GraphContainer} />
-  </div>
+  <DataContainer />
 );
 
 export default App;
