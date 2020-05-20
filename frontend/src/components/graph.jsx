@@ -142,68 +142,93 @@ class Graph extends React.Component {
         .attr("opacity", "0.4")
         .attr("text-anchor", "middle");
 
-      var tip = d3tip()
-        .attr("className", "d3-tip")
-        .html(function (d) {
-          var text =
-            "<span style='font-size:14px;'>Name:</span> <span style='color:blue;text-transform:capitalize;font-weight:600;'>" +
-            d.state +
-            "</span><br>";
-          text +=
-            "<span style='font-size:14px;'>Data Period:</span> <span style='color:blue;font-weight:600;'>" +
-            DateTable[d.table] +
-            "</span><br>";
-          text +=
-            "<span style='font-size:14px;'>Total Number of Colonies:</span> <span style='color:blue;font-weight:600;'>" +
-            d3.format(",.0f")(d.total) +
-            " Colonies" +
-            "</span><br>";
-          text +=
-            "<span style='font-size:14px;'>Lost Colonies:</span> <span style='color:red;font-weight:600;'>" +
-            d3.format(",.0f")(d.lost) +
-            " Colonies" +
-            "</span><br>";
-          text +=
-            "<span style='font-size:14px;'>Percent Lost:</span> <span style='color:red;font-weight:600;'>" +
-            d.percent_lost +
-            "%" +
-            "</span><br>";
-          text +=
-            "<span style='font-size:14px;'>Added:</span> <span style='color:purple;font-weight:600;'>" +
-            d3.format(",.0f")(d.added) +
-            " Colonies" +
-            "</span><br>";
-          text +=
-            "<span style='font-size:14px;'>Renovated:</span> <span style='color:purple;font-weight:600;'>" +
-            d3.format(",.0f")(d.renovated) +
-            " Colonies" +
-            "</span><br>";
-          return text;
-        });
+    var time = 0; // NOTE IT'S IMPORTANT TO KEEP MS LOWER THAN LOOP'S DELAY
+    var workingData = this.props.data;
+    var interval;
 
-        g.call(tip);
+    var tip = d3tip()
+      .attr("className", "d3-tip")
+      .html(function (d) {
+        var text =
+          "<span style='font-size:14px;'>Name:</span> <span style='color:blue;text-transform:capitalize;font-weight:600;'>" +
+          d.state +
+          "</span><br>";
+        text +=
+          "<span style='font-size:14px;'>Data Period:</span> <span style='color:blue;font-weight:600;'>" +
+          DateTable[d.table] +
+          "</span><br>";
+        text +=
+          "<span style='font-size:14px;'>Total Number of Colonies:</span> <span style='color:blue;font-weight:600;'>" +
+          d3.format(",.0f")(d.total) +
+          " Colonies" +
+          "</span><br>";
+        text +=
+          "<span style='font-size:14px;'>Lost Colonies:</span> <span style='color:red;font-weight:600;'>" +
+          d3.format(",.0f")(d.lost) +
+          " Colonies" +
+          "</span><br>";
+        text +=
+          "<span style='font-size:14px;'>Percent Lost:</span> <span style='color:red;font-weight:600;'>" +
+          d.percent_lost +
+          "%" +
+          "</span><br>";
+        text +=
+          "<span style='font-size:14px;'>Added:</span> <span style='color:purple;font-weight:600;'>" +
+          d3.format(",.0f")(d.added) +
+          " Colonies" +
+          "</span><br>";
+        text +=
+          "<span style='font-size:14px;'>Renovated:</span> <span style='color:purple;font-weight:600;'>" +
+          d3.format(",.0f")(d.renovated) +
+          " Colonies" +
+          "</span><br>";
+        return text;
+      });
 
-        var time = 0; // NOTE IT'S IMPORTANT TO KEEP MS LOWER THAN LOOP'S DELAY
-      var workingData = this.props.data;
-      var interval;
+    g.call(tip);
 
-      jquery("#date-slider").slider({
-          max: 16,
-          min: 1,
-          step: 1,
-          value: 1,
-          slide: function (event, ui) {
-            time = ui.value - 1;
-            update(workingData[time]);
-          },
-        });
+      
+
+    jquery("#date-slider").slider({
+        max: 16,
+        min: 1,
+        step: 1,
+        value: 1,
+        slide: function (event, ui) {
+          time = ui.value - 1;
+          update(workingData[time]);
+        },
+      });
+
+      update(workingData[0]);
+
+    
+      jquery("#play-button").on("click", function () {
+        if (jquery("#play-button").val() === "Play") {
+          jquery("#play-button").text("Pause");
+          interval = setInterval(step, 500);
+        } else { jquery("#play-button").text("Play");
+          clearInterval(interval)}
+      });
+
+      jquery("#reset-button").on("click", function () {
+        time = 0;
+        update(workingData[0]);
+      });
+
+      jquery("#percentRange-select").on("change", function () {
+        update(workingData[time]);
+      });
+
+      function step() {    
+        time = time < 16 ? time+1 : 0; // ONCE GO THROUGH ALL DATA, LOOP BACK
+        update(workingData[time]);
+      }
 
       function update(data) {
         var t = d3.transition().duration(250);
 
-        var percentRange = jquery(
-          "#percentRange-select"
-        ).val();
+        var percentRange = jquery("#percentRange-select").val();
 
         var currentData = data.filter(function (d) {
           if (percentRange === "all") {
@@ -215,11 +240,9 @@ class Graph extends React.Component {
           }
         });
 
-        var circles = g
-          .selectAll("circle")
-          .data(currentData, function (d) {
-            return d.state;
-          });
+        var circles = g.selectAll("circle").data(currentData, function (d) {
+          return d.state;
+        });
 
         circles.exit().attr("className", "exit").remove();
 
@@ -250,61 +273,13 @@ class Graph extends React.Component {
             return Math.sqrt(area(d.lost) / Math.PI);
           });
 
-        timeLabel.text(QuarterTable[time + 1]);
+          timeLabel.text(QuarterTable[time + 1]);
 
-        // jquery("#period")[0].innerHTML = +(time + 1);
-        // jquery("#date-slider").slider("value", time + 1);
+          jquery("#period")[0].innerHTML = (time + 1);
+          jquery("#date-slider").slider("value", time + 1);
       }
-
-      update(workingData[0]);
-
-      
-
-      jquery("#play-button").on("click", function () {
-        if (jquery("#play-button").val() === "Play") {
-          jquery("#play-button").text("Pause");
-          interval = setInterval(step, 500);
-        } else { jquery("#play-button").text("Play");
-          clearInterval(interval)}
-      });
-
-      jquery("#reset-button").on("click", function () {
-        time = 0;
-        update(workingData[0]);
-      });
-
-      jquery("#percentRange-select").on("change", function () {
-        update(workingData[time]);
-      });
-
-
-      function step() {
-        time = (time < 16) ? (time + 1) : (0); // ONCE GO THROUGH ALL DATA, LOOP BACK
-        update(workingData[time]);
-      }
-
-
-
-
-  //   svgCanvas.selectAll("rect")
-  //       .data(data).enter()
-  //           .append("rect")
-  //           .attr("width", 40)
-  //           .attr("height", (datapoint) => datapoint * scale)
-  //           .attr("fill", "orange")
-  //           .attr("x", (datapoint, iteration) => iteration * 45)
-  //           .attr("y", (datapoint) => canvasHeight - datapoint * scale)
-
-  //   svgCanvas.selectAll("text")
-  //   .data(data).enter()
-  //       .append("text")
-  //       .attr("x", (dataPoint, i) => i * 45 + 10)
-  //       .attr("y", (dataPoint, i) => canvasHeight - dataPoint * scale - 10)
-  //       .text(dataPoint => dataPoint)
-  // }
-
-
-}
+   
+  }
 
 
   handleClick() {
@@ -315,7 +290,7 @@ class Graph extends React.Component {
 
   render() {
   
-    // if (this.props.data) {
+    if (this.props.data) {
 
       return (
         <div>
@@ -390,9 +365,9 @@ class Graph extends React.Component {
           </div>
         </div>
       );
-    // } else {
-    //   return <div>Sorry</div>;
-    // } 
+    } else {
+      return <div>One minute while we load bee data!</div>;
+    } 
   }
 }
 
