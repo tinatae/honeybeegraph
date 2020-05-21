@@ -144,6 +144,7 @@ class Graph extends React.Component {
         .attr("width", 10)
         .attr("height", 10)
         .attr("fill", LegendColor[percentRange]);
+        // .attr("stroke", "black");
 
       legendRow
         .append("text")
@@ -219,16 +220,6 @@ class Graph extends React.Component {
     });
 
     update(workingData[0]);
-
-    // document.getElementById("play-button").addEventListener("click", function() {
-    //   if (document.getElementById("play-button").val() === "Play") {
-    //     document.getElementById("play-button").text("Pause");
-    //     interval = setInterval(step, 500);
-    //   } else {
-    //     document.getElementById("play-button").text("Play");
-    //     clearInterval(interval);
-    //   }
-    // })
 
     jquery("#play-button").on("click", function () {
       if (jquery("#play-button").val() === "Play") {
@@ -331,12 +322,43 @@ class Graph extends React.Component {
 
         return (
           <div className="whole">
+            <div id="me">
+              <div>
+                <i
+                  id="github"
+                  className="fab fa-github"
+                  title="🍯"
+                  onClick={() =>
+                    window.location.replace(
+                      "https://github.com/tinatae/honeybeegraph.git"
+                    )
+                  }
+                ></i>
+              </div>
+              <div>
+                <i
+                  id="linkedin"
+                  className="fab fa-linkedin"
+                  title="🐝"
+                  onClick={() =>
+                    window.location.replace(
+                      "https://www.linkedin.com/in/tina-tae-87a3ba18/"
+                    )
+                  }
+                ></i>
+              </div>
+            </div>
+
             <div id="title">
               <img src="/4comb.svg" alt="3 hexagon honeycomb abstract" />
               <h2>HONEY BEE COLONY COUNT BY STATE (U.S.)</h2>
-              <img id="second-img" src="/3comb.svg" alt="3 hexagon honeycomb abstract" />
+              <img
+                id="second-img"
+                src="/3comb.svg"
+                alt="3 hexagon honeycomb abstract"
+              />
             </div>
-            <h3>(2015 - 2019)</h3>
+            <h3>(2015 - 2018)</h3>
 
             <div id="top-row">
               <select id="percentRange-select" className="form-control">
@@ -347,16 +369,19 @@ class Graph extends React.Component {
                 <option disabled value="">
                   &emsp;--&emsp;&emsp;⬡&emsp;&emsp;--&emsp;
                 </option>
-                <option value="50">Lost more than 50%</option>
-                <option value="25">Lost more than 25%</option>
-                <option value="10">Lost more than 10%</option>
+                <option value="50">50% or Greater Loss</option>
+                <option value="25">25% or Greater Loss</option>
+                <option value="10">10% or Greater Loss</option>
                 <option disabled value="">
                   &emsp;--&emsp;&emsp;⬡&emsp;&emsp;--&emsp;
                 </option>
-                <option value="9">Less than 10% Loss</option>
-                <option value="5">Less than 5% Loss</option>
-                <option value="2">Less than 2% Loss</option>
-                <option value="1">Less than 1% Loss</option>
+                <option value="9">Less Than 10% Loss</option>
+                <option value="5">Less Than 5% Loss</option>
+                <option value="2">Less Than 2% Loss</option>
+                <option disabled value="">
+                  &emsp;--&emsp;&emsp;⬡&emsp;&emsp;--&emsp;
+                </option>
+                <option value="1">&emsp;1% or Less Loss</option>
               </select>
 
               <div id="jquery-buttons">
@@ -384,7 +409,7 @@ class Graph extends React.Component {
 
               <div className="asterisk">
                 <div>
-                  * # of Added + Renovated Colonies{" "}
+                  &ensp;* Number of Added + Renovated Colonies{" "}
                   <span id="make-italic">Less Than</span> # of Lost Colonies
                 </div>
                 <div>
@@ -403,9 +428,19 @@ class Graph extends React.Component {
               United States Department of Agriculture / Economics, Statistics
               and Market Information System. Retrieved from{" "}
               <span id="make-underline">
-                https://usda.library.cornell.edu/concern/publications/rn301137d
+                <a
+                  onClick={() =>
+                    window.location.replace(
+                      "https://usda.library.cornell.edu/concern/publications/rn301137d"
+                    )
+                  }
+                  href="https://usda.library.cornell.edu/concern/publications/rn301137d"
+                >
+                  https://usda.library.cornell.edu/concern/publications/rn301137d
+                </a>
               </span>
             </div>
+            <div id="new-data">2019 Data to be released August 2020</div>
           </div>
         );
       } else {

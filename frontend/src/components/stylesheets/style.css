@@ -13,10 +13,42 @@
     font-weight: bold;
     font-family: Palatino Linotype;
 }
+
+#me {
+    display: flex;
+    align-items: center;
+    margin-left: 815px;
+    margin-top: 20px;
+}
+
+#github {
+    color: #5F0B0B;
+    text-align: right;
+    font-size: 25px;
+}
+
+#github:hover {
+    color: gold;
+    /* color: rgb(252, 238, 157); */
+}
+
+#linkedin {
+    color: #5F0B0B;
+    text-align: right;
+    margin-left: 15px;
+    font-size: 25px;
+}
+
+#linkedin:hover {
+    color: darkblue;
+}
+
 #title {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: -20px;
+    /* color: #5F0B0B; */
 }
 
 img {
@@ -107,13 +139,14 @@ h3 {
     color: #5F0B0B;
 }
 
-/* .asterisk div:nth-child(1) {
+.asterisk div:nth-child(1) {
     color: rgb(210, 22, 22);
+    /* text-shadow:-1px -1px 0 rgb(210, 22, 22),1px -1px 0 rgb(210, 22, 22),-1px 1px 0 rgb(210, 22, 22),1px 1px 0 rgb(210, 22, 22); */
 }
 
 .asterisk div:nth-child(2) {
-    color: rgb(1, 123, 56);
-} */
+    color: #5F0B0B;
+}
 
 #cite-source {
     text-align: center;
@@ -128,5 +161,21 @@ h3 {
 }
 
 #make-underline {
-    text-decoration: underline;
+    /* text-decoration: underline; */
+    margin-bottom: 10px;
+}
+
+a {
+    color: black;
+}
+
+a:hover {
+    color: purple;
+}
+
+#new-data {
+    margin-top: 20px;
+    color: blue;
+    /* color: rgb(206, 211, 134); */
+    font-size: 15px;
 }
