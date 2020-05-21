@@ -6,6 +6,7 @@ import * as jqueryui from "jquery-ui-bundle";
 import "./stylesheets/jquery-ui.min.css";
 import "./stylesheets/jquery-ui.structure.min.css";
 import "./stylesheets/jquery-ui.theme.min.css";
+import "./stylesheets/style.css";
 
 
 const Margin = { left: 80, right: 100, top: 50, bottom: 100 };
@@ -32,8 +33,12 @@ const QuarterTable = {
 };
 
 const LegendColor = {
-  "Net Loss *": "#5F0B0B",
-  "Balance / Net Gain **": "#FFC707",
+  "Net Loss *": "rgb(210, 22, 22)",
+  // "Net Loss *": "#5F0B0B",
+  // "Balance / Net Gain **": "rgb(1, 123, 56)",
+  "Balance / Net Gain **": "rgb(252, 238, 157)",
+  // "Balance / Net Gain **": "#5F0B0B",
+  // "Balance / Net Gain **": "#FFC707",
 };
 
 const DateTable = {
@@ -72,32 +77,37 @@ class Graph extends React.Component {
   }
 
   drawChart(data) {
-    
-    const g = d3.select(this.refs.chartArea)
+    const g = d3
+      .select(this.refs.chartArea)
       .append("svg")
       .attr("width", Width + Margin.left + Margin.right)
       .attr("height", Height + Margin.top + Margin.bottom)
       .append("g")
       .attr("transform", "translate(" + Margin.left + ", " + Margin.top + ")");
 
-     var xLabel = g.append("text")
+    var xLabel = g
+      .append("text")
       .attr("x", Width / 2)
       .attr("y", Height + 50)
-      .attr("font-size", "20px")
+      .attr("font-size", "18px")
       .attr("text-anchor", "middle")
-      .text("Total Number of Colonies per State");
+      .text("Total Number of Honey Bee Colonies Per State (#)");
 
-    var yLabel = g.append("text")
-      .attr("x", -170)
-      .attr("y", -60)
-      .attr("font-size", "20px")
+    var yLabel = g
+      .append("text")
+      .attr("x", -150)
+      .attr("y", -50)
+      .attr("font-size", "18px")
       .attr("text-anchor", "middle")
       .attr("transform", "rotate(-90)")
       .text("Percentage of Colonies Lost (%)");
 
     var x = d3.scaleLog().base(10).range([0, Width]).domain([100, 10000000]);
     var y = d3.scaleLinear().range([Height, 0]).domain([0, 100]);
-    var area = d3.scaleLinear().range([25 * Math.PI, 1000 * Math.PI]).domain([0, 250000]);
+    var area = d3
+      .scaleLinear()
+      .range([25 * Math.PI, 1000 * Math.PI])
+      .domain([0, 250000]);
 
     var xAxisCall = d3
       .axisBottom(x)
@@ -106,27 +116,37 @@ class Graph extends React.Component {
     g.append("g")
       .attr("className", "x axis")
       .attr("transform", "translate(0," + Height + ")")
+      .style("font-size", "14px")
       .call(xAxisCall);
 
     var yAxisCall = d3.axisLeft(y).tickFormat(function (d) {
       return +d;
     });
+    g.append("g")
+      .attr("className", "y axis")
+      .style("font-size", "14px")
+      .call(yAxisCall);
 
-    g.append("g").attr("className", "y axis").call(yAxisCall);
-
-    var legend = g.append("g")
-      .attr("transform", "translate(" + (Width - 10) + "," + (Height - 300) + ")");
+    var legend = g
+      .append("g")
+      .attr(
+        "transform",
+        "translate(" + (Width - 10) + "," + (Height - 260) + ")"
+      );
 
     ["Net Loss *", "Balance / Net Gain **"].forEach(function (percentRange, i) {
-      var legendRow = legend.append("g")
+      var legendRow = legend
+        .append("g")
         .attr("transform", "translate(0, " + i * 20 + ")");
 
-      legendRow.append("rect")
+      legendRow
+        .append("rect")
         .attr("width", 10)
         .attr("height", 10)
         .attr("fill", LegendColor[percentRange]);
 
-      legendRow.append("text")
+      legendRow
+        .append("text")
         .attr("x", -10)
         .attr("y", 10)
         .attr("text-anchor", "end")
@@ -134,13 +154,13 @@ class Graph extends React.Component {
         .text(percentRange);
     });
 
-     var timeLabel = g
-        .append("text")
-        .attr("y", Height - 320)
-        .attr("x", Width / 2)
-        .attr("font-size", "25px")
-        .attr("opacity", "0.4")
-        .attr("text-anchor", "middle");
+    var timeLabel = g
+      .append("text")
+      .attr("y", Height - 285)
+      .attr("x", Width / 2)
+      .attr("font-size", "25px")
+      .attr("opacity", "0.4")
+      .attr("text-anchor", "middle");
 
     var time = 0; // NOTE IT'S IMPORTANT TO KEEP MS LOWER THAN LOOP'S DELAY
     var workingData = this.props.data;
@@ -150,35 +170,35 @@ class Graph extends React.Component {
       .attr("className", "d3-tip")
       .html(function (d) {
         var text =
-          "<span style='font-size:14px;'>Name:</span> <span style='color:blue;text-transform:capitalize;font-weight:600;'>" +
+          "<span style='font-size:14px;'>Name:</span> <span style='font-size:14px;color:blue;text-transform:capitalize;font-weight:600;'>" +
           d.state +
           "</span><br>";
         text +=
-          "<span style='font-size:14px;'>Data Period:</span> <span style='color:blue;font-weight:600;'>" +
+          "<span style='font-size:14px;'>Data Period:</span> <span style='font-size:14px;color:blue;font-weight:600;'>" +
           DateTable[d.table] +
           "</span><br>";
         text +=
-          "<span style='font-size:14px;'>Total Number of Colonies:</span> <span style='color:blue;font-weight:600;'>" +
+          "<span style='font-size:14px;'>Total Number of Colonies:</span> <span style='font-size:14px;color:blue;font-weight:600;'>" +
           d3.format(",.0f")(d.total) +
           " Colonies" +
           "</span><br>";
         text +=
-          "<span style='font-size:14px;'>Lost Colonies:</span> <span style='color:red;font-weight:600;'>" +
+          "<span style='font-size:14px;'>Lost:</span> <span style='color:rgb(210, 22, 22);font-weight:600; text-shadow:-1px -1px 0 white,1px -1px 0 white,-1px 1px 0 white,1px 1px 0 white;'>" +
           d3.format(",.0f")(d.lost) +
           " Colonies" +
           "</span><br>";
         text +=
-          "<span style='font-size:14px;'>Percent Lost:</span> <span style='color:red;font-weight:600;'>" +
+          "<span style='font-size:14px;'>Percent Lost:</span> <span style='color:rgb(210, 22, 22);font-weight:600;text-shadow:-1px -1px 0 white,1px -1px 0 white,-1px 1px 0 white,1px 1px 0 white;'>" +
           d.percent_lost +
           "%" +
           "</span><br>";
         text +=
-          "<span style='font-size:14px;'>Added:</span> <span style='color:purple;font-weight:600;'>" +
+          "<span style='font-size:14px;'>Added:</span> <span style='font-size:14px;color:#5F0B0B;font-weight:600;text-shadow:-1px -1px 0 rgb(252, 238, 157),1px -1px 0 rgb(252, 238, 157),-1px 1px 0 rgb(252, 238, 157),1px 1px 0 rgb(252, 238, 157)'>" +
           d3.format(",.0f")(d.added) +
           " Colonies" +
           "</span><br>";
         text +=
-          "<span style='font-size:14px;'>Renovated:</span> <span style='color:purple;font-weight:600;'>" +
+          "<span style='font-size:14px;'>Renovated:</span> <span style='font-size:14px;color:#5F0B0B;font-weight:600;text-shadow:-1px -1px 0 rgb(252, 238, 157),1px -1px 0 rgb(252, 238, 157),-1px 1px 0 rgb(252, 238, 157),1px 1px 0 rgb(252, 238, 157)'>" +
           d3.format(",.0f")(d.renovated) +
           " Colonies" +
           "</span><br>";
@@ -187,188 +207,212 @@ class Graph extends React.Component {
 
     g.call(tip);
 
-      
-
     jquery("#date-slider").slider({
-        max: 16,
-        min: 1,
-        step: 1,
-        value: 1,
-        slide: function (event, ui) {
-          time = ui.value - 1;
-          update(workingData[time]);
-        },
-      });
+      max: 16,
+      min: 1,
+      step: 1,
+      value: 1,
+      slide: function (event, ui) {
+        time = ui.value - 1;
+        update(workingData[time]);
+      },
+    });
 
+    update(workingData[0]);
+
+    // document.getElementById("play-button").addEventListener("click", function() {
+    //   if (document.getElementById("play-button").val() === "Play") {
+    //     document.getElementById("play-button").text("Pause");
+    //     interval = setInterval(step, 500);
+    //   } else {
+    //     document.getElementById("play-button").text("Play");
+    //     clearInterval(interval);
+    //   }
+    // })
+
+    jquery("#play-button").on("click", function () {
+      if (jquery("#play-button").val() === "Play") {
+        jquery("#play-button").text("Pause");
+        interval = setInterval(step, 500);
+      } else {
+        jquery("#play-button").text("Play");
+        clearInterval(interval);
+      }
+    });
+
+    jquery("#reset-button").on("click", function () {
+      time = 0;
       update(workingData[0]);
+    });
 
-    
-      jquery("#play-button").on("click", function () {
-        if (jquery("#play-button").val() === "Play") {
-          jquery("#play-button").text("Pause");
-          interval = setInterval(step, 500);
-        } else { jquery("#play-button").text("Play");
-          clearInterval(interval)}
+    jquery("#percentRange-select").on("change", function () {
+      update(workingData[time]);
+    });
+
+    function step() {
+      time = time < 16 ? time + 1 : 0; // ONCE GO THROUGH ALL DATA, LOOP BACK
+      update(workingData[time]);
+    }
+
+    function update(data) {
+
+      var t = d3.transition().duration(250);
+
+      var percentRange = jquery("#percentRange-select").val();
+
+      var currentData = data.filter(function (d) {
+        if (percentRange === "all") {
+          return true;
+        } else if (percentRange >= 10) {
+          return d.percent_lost >= percentRange;
+        } else {
+          return d.percent_lost <= percentRange;
+        }
       });
 
-      jquery("#reset-button").on("click", function () {
-        time = 0;
-        update(workingData[0]);
+      var circles = g.selectAll("circle").data(currentData, function (d) {
+        return d.state;
       });
 
-      jquery("#percentRange-select").on("change", function () {
-        update(workingData[time]);
-      });
+      circles.exit().attr("className", "exit").remove();
 
-      function step() {    
-        time = time < 16 ? time+1 : 0; // ONCE GO THROUGH ALL DATA, LOOP BACK
-        update(workingData[time]);
-      }
-
-      function update(data) {
-        var t = d3.transition().duration(250);
-
-        var percentRange = jquery("#percentRange-select").val();
-
-        var currentData = data.filter(function (d) {
-          if (percentRange === "all") {
-            return true;
-          } else if (percentRange >= 10) {
-            return d.percent_lost >= percentRange;
+      circles
+        .enter()
+        .append("circle")
+        .attr("className", "enter")
+        .attr("stroke", function (d) {
+          if (d.added_together >= d.lost) {
+            return "#5F0B0B";
+            // return "rgb(206, 211, 134)";
           } else {
-            return d.percent_lost <= percentRange;
+            return "#5F0B0B";
           }
+        })
+        .attr("fill", function (d) {
+          if (d.added_together >= d.lost) {
+            return LegendColor["Balance / Net Gain **"];
+          } else {
+            return LegendColor["Net Loss *"];
+          }
+        })
+        .on("mouseover", tip.show) // EVENT HANDLERS ADDED BEFORE UPDATE
+        .on("mouseout", tip.hide)
+        .merge(circles) // UPDATES OLD ELEMENTS PRESENT IN NEW DATA
+        .transition(t)
+        .transition(d3.transition().duration(500)) // SWAP OUT FOR VARIABLE
+        .attr("cy", function (d) {
+          return y(d.percent_lost);
+        })
+        .attr("cx", function (d) {
+          return x(d.total);
+        })
+        .attr("r", function (d) {
+          return Math.sqrt(area(d.lost) / Math.PI);
         });
 
-        var circles = g.selectAll("circle").data(currentData, function (d) {
-          return d.state;
-        });
+      timeLabel.text(QuarterTable[time + 1]);
 
-        circles.exit().attr("className", "exit").remove();
-
-        circles
-          .enter()
-          .append("circle")
-          .attr("className", "enter")
-          .attr("stroke", "orange")
-          .attr("fill", function (d) {
-            if (d.added_together >= d.lost) {
-              return LegendColor["Balance / Net Gain **"];
-            } else {
-              return LegendColor["Net Loss *"];
-            }
-          })
-          .on("mouseover", tip.show) // EVENT HANDLERS ADDED BEFORE UPDATE
-          .on("mouseout", tip.hide)
-          .merge(circles) // UPDATES OLD ELEMENTS PRESENT IN NEW DATA
-          .transition(t)
-          .transition(d3.transition().duration(500)) // SWAP OUT FOR VARIABLE
-          .attr("cy", function (d) {
-            return y(d.percent_lost);
-          })
-          .attr("cx", function (d) {
-            return x(d.total);
-          })
-          .attr("r", function (d) {
-            return Math.sqrt(area(d.lost) / Math.PI);
-          });
-
-          timeLabel.text(QuarterTable[time + 1]);
-
-          jquery("#period")[0].innerHTML = (time + 1);
-          jquery("#date-slider").slider("value", time + 1);
-      }
-   
+      jquery("#period")[0].innerHTML = time + 1;
+      jquery("#date-slider").slider("value", time + 1);
+    }
   }
-
 
   handleClick() {
     return (e) => {
-      this.state.playButton === "Play" ? this.setState({ playButton: "Pause" }) : this.setState({ playButton: "Play" });
+      this.state.playButton === "Play"
+        ? this.setState({ playButton: "Pause" })
+        : this.setState({ playButton: "Play" });
     };
   }
 
-  render() {
-  
-    if (this.props.data) {
+    render() {
 
-      return (
-        <div>
-          <button
-            onClick={this.handleClick()}
-            id="play-button"
-            value={this.state.playButton}
-          >
-            Play
-          </button>
-          <button id="reset-button">Reset</button>
+      if (this.props.data) {
 
-          <div id="slider-div">
-            <label>
-              Quarter <span id="period"></span>
-            </label>
-            <div id="date-slider"></div>
-          </div>
-          <div>
-            <select
-              id="percentRange-select"
-              className="form-control"
-            >
-              <option selected value="all">
-                All
-              </option>
-              <option value="50">
-                Lost more than 50%
-              </option>
-              <option value="25">
-                Lost more than 25%
-              </option>
-              <option value="10">
-                Lost more than 10%
-              </option>
-              <option value="9">Less than 10% Loss</option>
-              <option value="5">Less than 5% Loss</option>
-              <option value="2">Less than 2% Loss</option>
-              <option value="1">Less than 1% Loss</option>
-            </select>
-          </div>
-
-          <div>
-            {/* <svg id="chart-area"></svg> */}
-            <div ref="chartArea"></div>
-
-            <div id="asterisk">
-              * Number of Added + Renovated Colonies Less
-              Than Number of Lost Colonies
+        return (
+          <div className="whole">
+            <div id="title">
+              <img src="/4comb.svg" alt="3 hexagon honeycomb abstract" />
+              <h2>HONEY BEE COLONY COUNT BY STATE (U.S.)</h2>
+              <img id="second-img" src="/3comb.svg" alt="3 hexagon honeycomb abstract" />
             </div>
-            <div id="asterisk">
-              ** Number of Added + Renovated Colonies
-              Greater Than or Equal to Number of Lost
-              Colonies
+            <h3>(2015 - 2019)</h3>
+
+            <div id="top-row">
+              <select id="percentRange-select" className="form-control">
+                <option value="all">
+                  {/* <option selected value="all"> */}
+                  Showing All States
+                </option>
+                <option disabled value="">
+                  &emsp;--&emsp;&emsp;⬡&emsp;&emsp;--&emsp;
+                </option>
+                <option value="50">Lost more than 50%</option>
+                <option value="25">Lost more than 25%</option>
+                <option value="10">Lost more than 10%</option>
+                <option disabled value="">
+                  &emsp;--&emsp;&emsp;⬡&emsp;&emsp;--&emsp;
+                </option>
+                <option value="9">Less than 10% Loss</option>
+                <option value="5">Less than 5% Loss</option>
+                <option value="2">Less than 2% Loss</option>
+                <option value="1">Less than 1% Loss</option>
+              </select>
+
+              <div id="jquery-buttons">
+                <button
+                  onClick={this.handleClick()}
+                  id="play-button"
+                  value={this.state.playButton}
+                >
+                  Play
+                </button>
+                <button id="reset-button">Reset</button>
+              </div>
+
+              <div id="slider-div">
+                <span id="slider-label">
+                  {" "}
+                  QTR <span id="period"></span>
+                </span>
+                <div id="date-slider"></div>
+              </div>
+            </div>
+
+            <div>
+              <div ref="chartArea"></div>
+
+              <div className="asterisk">
+                <div>
+                  * # of Added + Renovated Colonies{" "}
+                  <span id="make-italic">Less Than</span> # of Lost Colonies
+                </div>
+                <div>
+                  ** Number of Added + Renovated Colonies{" "}
+                  <span id="make-italic">Greater Than or Equal To</span> Number
+                  of Lost Colonies
+                </div>
+              </div>
+            </div>
+
+            <div id="cite-source">
+              National Agricultural Statistics Service (NASS), Agricultural
+              Statistics Board, United States Department of Agriculture (USDA).
+              (2019).
+              <span id="make-italic"> Honey Bee Colonies</span> [Data set].
+              United States Department of Agriculture / Economics, Statistics
+              and Market Information System. Retrieved from{" "}
+              <span id="make-underline">
+                https://usda.library.cornell.edu/concern/publications/rn301137d
+              </span>
             </div>
           </div>
-          <div id="cite-source">
-            National Agricultural Statistics Service
-            (NASS), Agricultural Statistics Board, United
-            States Department of Agriculture (USDA).
-            (2019).
-            <span id="make-italic">
-              {" "}
-              Honey Bee Colonies
-            </span>{" "}
-            [Data set]. United States Department of
-            Agriculture / Economics, Statistics and Market
-            Information System. Retrieved from{" "}
-            <span id="make-underline">
-              https://usda.library.cornell.edu/concern/publications/rn301137d
-            </span>
-          </div>
-        </div>
-      );
-    } else {
-      return <div>One minute while we load bee data!</div>;
-    } 
+        );
+      } else {
+        return <div>One minute while we load bee data!</div>;
+      }
+    }
   }
-}
 
-export default Graph;
+  export default Graph;
+

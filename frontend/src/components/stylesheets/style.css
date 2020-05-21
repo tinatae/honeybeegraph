@@ -1,8 +1,132 @@
-/* #chart-area {
-    height: 450px;
-    width: 800px;
+.whole {
+    background-color: rgb(206, 211, 134);
+    background-image: url('/opaque.jpg');
+    background-size: cover;
+    color: black;
+    border-radius: 7px;
+    border: 1px solid gold;
+    margin-left: 40px;
+    margin-right: 40px;
+    padding-bottom: 50px;
+    padding-top: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-family: Palatino Linotype;
+}
+#title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+img {
+    width: 60px;
+    height: 40px;
+    margin-top: 20px;
+}
+
+#second-img {
+    transform: rotateY(180deg) rotateZ(5deg);
+}
+
+h2 {
+    margin-top: 30px;
+}
+
+h3 {
+    margin-top: -15px;
+}
+
+#top-row {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-top: 20px;
+   margin-left: 140px;
+   margin-right: 130px;
+}
+
+#percentRange-select {
+    text-align-last: center;
+}
+
+#slider-div {
+    display: flex;
+    align-items: center;
+    margin-top: -5px;
+}
+
+#date-slider {
+    width: 275px;
+    margin-left: 15px;
+}
+
+.ui-slider .ui-slider-handle{
+    width:25px; 
+    height:25px; 
+    background-color: rgb(210, 22, 22);
+    background-image: url('/bee.svg'); 
+    transform: rotateY(180deg);
+    background-size: cover;
+    position:absolute;
+    border-style:none; 
+    z-index: 5;
+    margin-top: -3px;
+    border: 2px solid rgb(252, 238, 157);
+}
+
+#jquery-buttons {
+    margin-left: 30px;
+    margin-top: -5px;
+    margin-right: 15px;
+}
+
+#jquery-buttons button {
+   margin-left: 10px;
+}
+
+.legend {
+    border: 1px solid black;
+}
+
+
+
+.asterisk {
+    margin-top: -30px;   
+    font-size: 14px;
+    /* border-top: 1px solid black;
+    border-bottom: 1px solid black; */
+    margin-bottom: 10px;
+    text-align: left;
+    margin-left: 130px;
+}
+
+.asterisk div {
+    padding: 2px;
+    /* color: gold; */
+    color: #5F0B0B;
+}
+
+/* .asterisk div:nth-child(1) {
+    color: rgb(210, 22, 22);
+}
+
+.asterisk div:nth-child(2) {
+    color: rgb(1, 123, 56);
 } */
 
-#asterisk {
-    margin-top: 50px;
+#cite-source {
+    text-align: center;
+    font-size: 13px;
+    margin-left: 60px;
+    margin-right: 60px;
+    margin-top: 30px;
+}
+
+#make-italic {
+    font-style: italic;
+}
+
+#make-underline {
+    text-decoration: underline;
 }
