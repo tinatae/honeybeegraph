@@ -89,7 +89,7 @@ class Graph extends React.Component {
       .append("text")
       .attr("x", Width / 2)
       .attr("y", Height + 50)
-      .attr("font-size", "18px")
+      .attr("font-size", "16px")
       .attr("text-anchor", "middle")
       .text("Total Number of Honey Bee Colonies Per State (#)");
 
@@ -97,7 +97,7 @@ class Graph extends React.Component {
       .append("text")
       .attr("x", -150)
       .attr("y", -50)
-      .attr("font-size", "18px")
+      .attr("font-size", "16px")
       .attr("text-anchor", "middle")
       .attr("transform", "rotate(-90)")
       .text("Percentage of Colonies Lost (%)");
@@ -116,7 +116,7 @@ class Graph extends React.Component {
     g.append("g")
       .attr("className", "x axis")
       .attr("transform", "translate(0," + Height + ")")
-      .style("font-size", "14px")
+      .style("font-size", "13px")
       .call(xAxisCall);
 
     var yAxisCall = d3.axisLeft(y).tickFormat(function (d) {
@@ -124,7 +124,7 @@ class Graph extends React.Component {
     });
     g.append("g")
       .attr("className", "y axis")
-      .style("font-size", "14px")
+      .style("font-size", "13px")
       .call(yAxisCall);
 
     var legend = g
@@ -194,12 +194,12 @@ class Graph extends React.Component {
           "%" +
           "</span><br>";
         text +=
-          "<span style='font-size:14px;'>Added:</span> <span style='font-size:14px;color:#5F0B0B;font-weight:600;text-shadow:-1px -1px 0 rgb(252, 238, 157),1px -1px 0 rgb(252, 238, 157),-1px 1px 0 rgb(252, 238, 157),1px 1px 0 rgb(252, 238, 157)'>" +
+          "<span style='font-size:14px;'>Added:</span> <span style='font-size:14px;color:#5F0B0B;font-weight:600;text-shadow:-1px -1px 0 white,1px -1px 0 white,-1px 1px 0 white,1px 1px 0 white'>" +
           d3.format(",.0f")(d.added) +
           " Colonies" +
           "</span><br>";
         text +=
-          "<span style='font-size:14px;'>Renovated:</span> <span style='font-size:14px;color:#5F0B0B;font-weight:600;text-shadow:-1px -1px 0 rgb(252, 238, 157),1px -1px 0 rgb(252, 238, 157),-1px 1px 0 rgb(252, 238, 157),1px 1px 0 rgb(252, 238, 157)'>" +
+          "<span style='font-size:14px;'>Renovated:</span> <span style='font-size:14px;color:#5F0B0B;font-weight:600;text-shadow:-1px -1px 0 white,1px -1px 0 white,-1px 1px 0 white,1px 1px 0 white'>" +
           d3.format(",.0f")(d.renovated) +
           " Colonies" +
           "</span><br>";
@@ -350,22 +350,22 @@ class Graph extends React.Component {
             </div>
 
             <div id="title">
-              <img src="/4comb.svg" alt="3 hexagon honeycomb abstract" />
-              <h2>HONEY BEE COLONY COUNT BY STATE (U.S.)</h2>
-              <img
+              <img src="/4comb.svg" alt="4 hexagon honeycomb abstract" />
+              <h2>
+                H O N E Y B E E&emsp;C O L O N Y&emsp;C O U N T&emsp;B Y&emsp;S
+                T A T E&emsp;( U.S. )
+              </h2>
+              {/* <img
                 id="second-img"
                 src="/3comb.svg"
                 alt="3 hexagon honeycomb abstract"
-              />
+              /> */}
             </div>
-            <h3>(2015 - 2018)</h3>
+            <h3>( 2 0 1 5 - 2 0 1 8 )</h3>
 
             <div id="top-row">
               <select id="percentRange-select" className="form-control">
-                <option value="all">
-                  {/* <option selected value="all"> */}
-                  Showing All States
-                </option>
+                <option value="all">Showing All States</option>
                 <option disabled value="">
                   &emsp;--&emsp;&emsp;⬡&emsp;&emsp;--&emsp;
                 </option>
@@ -439,8 +439,19 @@ class Graph extends React.Component {
                   https://usda.library.cornell.edu/concern/publications/rn301137d
                 </a>
               </span>
+              <div id="artist">
+                <div>⬡</div>
+                <div>
+                  Background image taken from https://unsplash.com by Jez Timms
+                </div>
+              </div>
             </div>
-            <div id="new-data">2019 Data to be released August 2020</div>
+
+            <div id="new-data">
+              2 0 1 9&emsp;d a t a&emsp;t o&emsp;b e&emsp;r e l e a s e d&emsp;A
+              u g u s t&emsp;2 0 2 0
+            </div>
+            <img id="end-comb" src="/4comb.svg" alt="4 hexagon honeycomb abstract" />
           </div>
         );
       } else {
