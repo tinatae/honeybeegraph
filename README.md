@@ -19,7 +19,7 @@ Next data drop (2019 data) slated for August of 2020.
 
 #### Sample Code:
   ##### Data Container
-  ##### Honestly, the only notable code was the D3 syntax. That said, React was double-rendering our static graph when we had data-handling in the same container, so the issue was solved by separating data logic into its own container & passing it in as props to the D3 graph when it was fully ready to be mapped.
+  ##### Overall, the only notable code was the D3 syntax. That said, React was double-rendering our static graph when we had data-handling in the same container, so the issue was solved by separating data logic into its own container & passing it in as props to the D3 graph when it was fully ready to be mapped.
 
     dataSetCreator(data) {
         let workingData;
