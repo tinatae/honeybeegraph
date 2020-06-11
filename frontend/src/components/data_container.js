@@ -2436,13 +2436,6 @@ class Data extends React.Component {
 
      workingData = data.map(function (period) {
         return period["states"].map(function (eachState) {
-          // eachState.table = eachState.table;
-          // eachState.state = eachState.state;
-          // eachState.total = +eachState.total;
-          // eachState.lost = +eachState.lost;
-          // eachState.percent_lost = +eachState.percent_lost;
-          // eachState.added = +eachState.added;
-          // eachState.renovated = +eachState.renovated;
           eachState.added_together = eachState.added + eachState.renovated;
           return eachState;
         });

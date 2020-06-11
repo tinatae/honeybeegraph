@@ -34,11 +34,7 @@ const QuarterTable = {
 
 const LegendColor = {
   "Net Loss *": "rgb(210, 22, 22)",
-  // "Net Loss *": "#5F0B0B",
-  // "Balance / Net Gain **": "rgb(1, 123, 56)",
   "Balance / Net Gain **": "rgb(252, 238, 157)",
-  // "Balance / Net Gain **": "#5F0B0B",
-  // "Balance / Net Gain **": "#FFC707",
 };
 
 const DateTable = {
@@ -355,11 +351,6 @@ class Graph extends React.Component {
                 H O N E Y B E E&emsp;C O L O N Y&emsp;C O U N T&emsp;B Y&emsp;S
                 T A T E&emsp;( U.S. )
               </h2>
-              {/* <img
-                id="second-img"
-                src="/3comb.svg"
-                alt="3 hexagon honeycomb abstract"
-              /> */}
             </div>
             <h3>( 2 0 1 5 - 2 0 1 8 )</h3>
 
@@ -410,12 +401,12 @@ class Graph extends React.Component {
               <div className="asterisk">
                 <div>
                   &ensp;* Number of Added + Renovated Colonies{" "}
-                  <span id="make-italic">Less Than</span> # of Lost Colonies
+                  <span id="make-italic">Less Than</span> Number of Colonies Lost
                 </div>
                 <div>
                   ** Number of Added + Renovated Colonies{" "}
                   <span id="make-italic">Greater Than or Equal To</span> Number
-                  of Lost Colonies
+                  of Colonies Lost
                 </div>
               </div>
             </div>
