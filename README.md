@@ -13,13 +13,13 @@ D3 Bubble Chart showing time progression of U.S. Bee Colony Inventory between Ja
 Next data drop (2019 data) slated for August of 2020.
 
 #### Functionalities: 
-* Dropdown data filter
-* Date UI Slider
-* Tooltip data & legend color coordination
+* Data filter
+* UI Slider
+* Graph tooltip & legend
 
 #### Sample Code:
   ##### Data Container
-  ##### Overall, the only notable code was the D3 syntax. That said, React was double-rendering our static graph when we had data-handling in the same container, so the issue was solved by separating data logic into its own container & passing it in as props to the D3 graph when it was fully ready to be mapped.
+  ##### Overall, the only notable code was the D3 syntax. That said, React was double-rendering our static graph when we had data-handling & graph-rendering in the same container. The issue was resolved by separating the two & passing the data in as props to the graph when it was ready to be mapped.
 
     dataSetCreator(data) {
         let workingData;
