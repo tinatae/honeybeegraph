@@ -1,45 +1,44 @@
-.whole {
-    background-color: rgb(223, 161, 4);
-    background-image: url('/opaque.jpg');
-    background-size: cover;
-    color: black;
-    border-radius: 7px;
+.outer {
+    background-image: url('/yellow.jpg');
+    background-size: contain;
+    margin-top: 0;
     border: 2px solid #5F0B0B;
-    margin-left: 40px;
-    margin-right: 40px;
-    padding-bottom: 50px;
-    padding-top: 10px;
+    border-radius: 3px;
+}
+
+.whole {
+    background-color: rgb(252, 238, 157);
+    /* background-color: rgb(223, 161, 4); */
+    color: black;
+    border-radius: 7px; 
+    border: 1px solid rgb(150, 7, 7);
+    margin-top: 20px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    margin-left: 170px;
+    margin-right: 170px;
     text-align: center;
     font-weight: bold;
     font-family: Palatino Linotype;
+    /* color: rgb(150, 7, 7); */
 }
 
 #me {
     display: flex;
     align-items: center;
-    margin-left: 1000px;
-    margin-top: 20px;
+    margin-left: 950px;
+    margin-top: 0px;
 }
 
-#github {
-    color: #5F0B0B;
+#link {
+    color: rgb(150, 7, 7);
     text-align: right;
     font-size: 25px;
-}
-
-#github:hover {
-    color: gold;
-}
-
-#linkedin {
-    color: #5F0B0B;
-    text-align: right;
     margin-left: 15px;
-    font-size: 25px;
 }
 
-#linkedin:hover {
-    color: gold;
+#link:hover {
+    color: blue;
 }
 
 #title {
@@ -49,22 +48,16 @@
     margin-top: -20px;
 }
 
-img {
+#svg {
     width: 55px;
     height: 37px;
-    margin-top: 18px;
+    margin-top: 12px;
     transform: rotateZ(-5deg);
     margin-right: 12px;
 }
 
-/* #second-img {
-    transform: rotateY(180deg) rotateZ(-4deg);
-    margin-top: 19px;
-    margin-left: 9px;
-} */
-
 h2 {
-    margin-top: 30px;
+    /* margin-top: 10px; */
     font-size: 18px;
 }
 
@@ -82,8 +75,18 @@ h3 {
    margin-right: 130px;
 }
 
+select {
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
 #percentRange-select {
     text-align-last: center;
+}
+
+button {
+    border-radius: 5px;
+    border: 1px solid black;
 }
 
 button:hover {
@@ -114,6 +117,7 @@ button:hover {
 .ui-slider .ui-slider-handle{
     width:20px; 
     height:20px; 
+    /* background-color: #5F0B0B; */
     background-color: rgb(252, 238, 157);
     background-image: url('/bee.svg'); 
     transform: rotateY(180deg);
@@ -122,7 +126,7 @@ button:hover {
     border-style:none; 
     z-index: 5;
     margin-top: -5px;
-    border: 1px solid black;
+    border: 1px solid #5F0B0B;
     border-radius: 50%;
 }
 
@@ -136,29 +140,27 @@ button:hover {
    margin-left: 10px;
 }
 
-.legend {
-    border: 1px solid black;
-}
 
 .asterisk {
     margin-top: -25px;   
-    font-size: 13px;
+    font-size: 12px;
     margin-bottom: 10px;
     text-align: left;
-    margin-left: 21%;
+    margin-left: 22%;
+    /* color: #5F0B0B; */
+    color: rgb(150, 7, 7)
 }
 
 .asterisk div:nth-child(2) {
-
     margin-left: 2px;
 }
 
 #cite-source {
     text-align: center;
-    font-size: 12px;
-    margin-left: 120px;
-    margin-right: 120px;
-    margin-top: 30px;
+    font-size: 11px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 20px;
 }
 
 #artist {
@@ -190,12 +192,13 @@ a:hover {
 }
 
 #new-data {
-    margin-top: 25px;
-    color: blue;
+    margin-top: 10px;
+    /* color: rgb(252, 238, 157); */
     font-size: 14px;
 }
 
 #end-comb {
+    margin-top: 20px;
     height: 35px;
     width: 47px;
 }
