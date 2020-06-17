@@ -92,7 +92,7 @@ class Graph extends React.Component {
 
     var yLabel = g
       .append("text")
-      .attr("x", -150)
+      .attr("x", -140)
       .attr("y", -50)
       .attr("font-size", "16px")
       .attr("text-anchor", "middle")
@@ -277,7 +277,8 @@ class Graph extends React.Component {
         .attr("className", "enter")
         .attr("stroke", function (d) {
           if (d.added_together >= d.lost) {
-            return "#5F0B0B";
+            return "orange";
+            // return "#5F0B0B";
           } else {
             return "rgb(150, 7, 7)";
           }
@@ -371,7 +372,7 @@ class Graph extends React.Component {
 
               <div id="top-row">
                 <select id="percentRange-select" className="form-control">
-                  <option value="all">Showing All States</option>
+                  <option value="all">Show All States</option>
                   <option disabled value="">
                     &emsp;--&emsp;&emsp;⬡&emsp;&emsp;--&emsp;
                   </option>
@@ -445,18 +446,14 @@ class Graph extends React.Component {
                     https://usda.library.cornell.edu/concern/publications/rn301137d
                   </a>
                 </span>
-                {/* <div id="artist">
+                <div id="artist">
                   <div>⬡</div>
                   <div>
-                    Background image taken from https://unsplash.com by Jez Timms
+                    Background image taken from https://unsplash.com by Matthew T Rader
                   </div>
-                </div> */}
+                </div>
               </div>
 
-              {/* <div id="new-data">
-                2 0 1 9&emsp;D A T A&emsp;T O&emsp;B E&emsp;R E L E A S E D&emsp;A
-                U G U S T&emsp;2 0 2 0
-              </div> */}
               <div id="new-data">
                 2 0 1 9&emsp;d a t a&emsp;t o&emsp;b e&emsp;r e l e a s e d&emsp;A
                 u g u s t&emsp;2 0 2 0

@@ -2,8 +2,8 @@
     background-image: url('/yellow.jpg');
     background-size: contain;
     margin-top: 0;
-    border: 2px solid #5F0B0B;
-    border-radius: 3px;
+    border: 1px solid #5F0B0B;
+    border-radius: 7px;
 }
 
 .whole {
@@ -11,12 +11,12 @@
     /* background-color: rgb(223, 161, 4); */
     color: black;
     border-radius: 7px; 
-    border: 1px solid rgb(150, 7, 7);
+    border: 2px solid rgb(150, 7, 7);
     margin-top: 20px;
     padding-bottom: 10px;
     margin-bottom: 20px;
-    margin-left: 170px;
-    margin-right: 170px;
+    margin-left: 150px;
+    margin-right: 150px;
     text-align: center;
     font-weight: bold;
     font-family: Palatino Linotype;
@@ -38,22 +38,22 @@
 }
 
 #link:hover {
-    color: blue;
+    color: rgb(66, 7, 7);
 }
 
 #title {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: -20px;
+    margin-top: -15px;
 }
 
 #svg {
-    width: 55px;
-    height: 37px;
+    width: 54px;
+    height: 41px;
     margin-top: 12px;
     transform: rotateZ(-5deg);
-    margin-right: 12px;
+    margin-right: 10px;
 }
 
 h2 {
@@ -70,9 +70,9 @@ h3 {
    display: flex;
    align-items: center;
    justify-content: center;
-   margin-top: 25px;
-   margin-left: 140px;
-   margin-right: 130px;
+   margin-top: 20px;
+   margin-left: 10%;
+   /* margin-right: 130px; */
 }
 
 select {
@@ -87,6 +87,7 @@ select {
 button {
     border-radius: 5px;
     border: 1px solid black;
+    width: 50px;
 }
 
 button:hover {
@@ -106,7 +107,7 @@ button:hover {
 }
 
 #date-slider {
-    width: 275px;
+    width: 220px;
     margin-left: 15px;
 }
 
@@ -118,6 +119,7 @@ button:hover {
     width:20px; 
     height:20px; 
     /* background-color: #5F0B0B; */
+    /* background-color: gold; */
     background-color: rgb(252, 238, 157);
     background-image: url('/bee.svg'); 
     transform: rotateY(180deg);
@@ -131,7 +133,7 @@ button:hover {
 }
 
 #jquery-buttons {
-    margin-left: 30px;
+    margin-left: 10px;
     margin-top: -5px;
     margin-right: 15px;
 }
@@ -142,11 +144,11 @@ button:hover {
 
 
 .asterisk {
-    margin-top: -25px;   
+    margin-top: -28px;   
     font-size: 12px;
     margin-bottom: 10px;
     text-align: left;
-    margin-left: 22%;
+    margin-left: 24%;
     /* color: #5F0B0B; */
     color: rgb(150, 7, 7)
 }
@@ -198,7 +200,8 @@ a:hover {
 }
 
 #end-comb {
-    margin-top: 20px;
+    margin-top: 15px;
     height: 35px;
     width: 47px;
+    margin-bottom: 10px;
 }
