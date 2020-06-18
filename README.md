@@ -18,7 +18,7 @@ D3 Bubble Chart showing time progression of U.S. Bee Colony Inventory between Ja
 
 #### Sample Code:
   ##### Data Container
-  ##### The focus of this project was learning the D3 syntax & incorporating it with React. The code sample below maps through the raw data, adds an additional value called `added_together` & is passed to the graph container as `cleanData` props when it is fully updated.
+  ##### The focus of this project was learning the D3 syntax & incorporating it with React. The code sample below maps through the raw data, adds an additional value called `added_together` and is passed to the graph container as `cleanData` props when it is fully updated.
 
     dataSetCreator(data) {
         let workingData;
@@ -44,8 +44,8 @@ D3 Bubble Chart showing time progression of U.S. Bee Colony Inventory between Ja
     }
     
   ##### D3 Syntax
-  ##### D3 is powerful in its ability to visually communicate multiple layers of data in a glance. In the code below, each U.S. state in the `cleanData` props is mapped to a Canvas circle object and assigned graph placement with `x` referring to the total number of colonies for each state and `y` referring to the actual percent loss of colonies. Circle radius is determined by total number of lost colonies to give a sense of scale for `y`(%). 
- ##### Circle fill color shows if either the number of `added` + `renovated` colonies is less than or equal+ the number of colonies lost. The logic is admittedly stark because it is unclear from the study what the exact value of a `added` or `renovated` colony is reconciled against a colony lost; but for simplicity's sake, a single `added` or `renovated` colony measures 1:1 to a colony lost.
+  ##### D3 is powerful in its ability to visually communicate multiple layers of data in a glance. In the code below, each U.S. state in the `cleanData` props is mapped to a Canvas circle object and assigned graph placement with `x` referring to the total number of colonies for each state and `y` referring to the percentage of colonies lost. Circle radius is `y`'s actual number of colonies lost to give a sense of scale for the percentages (i.e. the visual difference between 10% of 1,000 colonies vs. 10% of 1,000,000 colonies). 
+ ##### Circle fill color shows if either the number of `added` + `renovated` colonies is less than or equal+ the number of colonies lost. The logic is admittedly stark because it is unclear from the study what the exact value of an `added` or `renovated` colony is reconciled against a colony lost. But for simplicity's sake here, a single `added` or `renovated` colony measures 1:1 to a colony lost.
   
     circles
       .enter()
