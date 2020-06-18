@@ -332,7 +332,7 @@ class Graph extends React.Component {
                   <i
                     id="link"
                     className="fab fa-github"
-                    title="🍯"
+                    title="&#11041; Project Code"
                     onClick={() =>
                       window.location.replace(
                         "https://github.com/tinatae/honeybeegraph.git"
@@ -344,7 +344,7 @@ class Graph extends React.Component {
                   <i
                     id="link"
                     className="fab fa-linkedin"
-                    title="🐝"
+                    title="&#11041; 🐝"
                     onClick={() =>
                       window.location.replace(
                         "https://www.linkedin.com/in/tina-tae-87a3ba18/"
@@ -353,7 +353,7 @@ class Graph extends React.Component {
                   ></i>
                 </div>
                 <div>
-                  <i id="link" className="fas fa-feather-alt" title="pure art" onClick={() =>
+                  <i id="link" className="fas fa-feather-alt" title="&#11041; Portfolio" onClick={() =>
                     window.location.replace(
                       "https://tinatae.com"
                     )

@@ -10,7 +10,6 @@ D3 Graph visualizing U.S. Honey Bee Colony Inventory (2015 - 2018)
 
 #### Overview:
 D3 Bubble Chart showing time progression of U.S. Bee Colony Inventory between January 2015 - December 2018.
-Next data drop (2019 data) slated for August of 2020.
 
 #### Functionalities: 
 * Data filter
@@ -19,7 +18,7 @@ Next data drop (2019 data) slated for August of 2020.
 
 #### Sample Code:
   ##### Data Container
-  ##### Overall, the only notable code was the D3 syntax. That said, React was double-rendering our static graph when we had data-handling & graph-rendering in the same container. The issue was resolved by separating the two & passing the data in as props to the graph when it was ready to be mapped.
+  ##### The focus of this project was learning the D3 syntax & incorporating it with React. The code sample below maps through the raw data, adds an additional value called `added_together` & is passed to the graph container as `cleanData` props when it is fully updated.
 
     dataSetCreator(data) {
         let workingData;
@@ -43,9 +42,44 @@ Next data drop (2019 data) slated for August of 2020.
         const cleanData = this.dataSetCreator(BeeData);
         return ( <Graph data={cleanData} />);  
     }
-
     
+  ##### D3 Syntax
+  ##### D3 is powerful in its ability to visually communicate multiple layers of data in a glance. In the code below, each U.S. state in the `cleanData` props is mapped to a Canvas circle object and assigned graph placement with `x` referring to the total number of colonies for each state and `y` referring to the actual percent loss of colonies. Circle radius is determined by total number of lost colonies to give a sense of scale for `y`(%). 
+ ##### Circle fill color shows if either the number of `added` + `renovated` colonies is less than or equal+ the number of colonies lost. The logic is admittedly stark because it is unclear from the study what the exact value of a `added` or `renovated` colony is reconciled against a colony lost; but for simplicity's sake, a single `added` or `renovated` colony measures 1:1 to a colony lost.
+  
+    circles
+      .enter()
+      .append("circle")
+      .attr("className", "enter")
+      .attr("stroke", function (d) {
+        if (d.added_together >= d.lost) {
+          return "orange";
+        } else {
+          return "rgb(150, 7, 7)";
+        }
+      })
+      .attr("fill", function (d) {
+        if (d.added_together >= d.lost) {
+          return LegendColor["BALANCE / NET GAIN **"];
+        } else {
+          return LegendColor["NET LOSS *"];
+        }
+      })
+      .on("mouseover", tip.show) 
+      .on("mouseout", tip.hide)
+      .merge(circles)
+      .transition(t)
+      .transition(d3.transition().duration(500))
+      .attr("cy", function (d) {
+        return y(d.percent_lost);
+      })
+      .attr("cx", function (d) {
+        return x(d.total);
+      })
+      .attr("r", function (d) {
+        return Math.sqrt(area(d.lost) / Math.PI);
+      });
+        
 #### Future add-ons:
-* If we're being honest, a warning page about the murder hornets that have landed in the U.S. and can decapitate up to 40 honeybees per minute.
-* Warning page about honeybees & cell phone radiation
-* Warning page about honeybee mites & other seasonal affectors
+* 2019 data is set to be released August 2020 so we will update our data then
+* An informational page about natural adversaries & detractors of colony health
