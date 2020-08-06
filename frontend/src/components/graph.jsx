@@ -466,10 +466,15 @@ class Graph extends React.Component {
                 </div>
               </div>
 
+            <div className="box-this">
               <div id="no-data">
-                Please Note: Alaska, Delaware, Nevada, New Hampshire, Rhode Island not included because individual state data not available<br/>
-                Also, Quarter 18 (4/1/19 - 6/30/19) data was entered as "N/A" for all fields in all states.
+                Please Note: <span id="make-blue">Alaska, Delaware, Nevada, New Hampshire, Rhode Island not included in visualization</span> because individual state data not available<br/>
               </div>
+              <div id="suspended">
+                Quarterly collection of colony data suspended for July 2019 ∴ <span id="make-blue">Quarter 18 (4/1/19 - 6/30/19) data entered as "N/A"</span> for all fields in all states.
+                {/* Data collection for July 2019 quarterly honey bee colonies was suspended ∴ Quarter 18 (4/1/19 - 6/30/19) data entered as "N/A" for all fields in all states. */}
+              </div>
+            </div>
 
               <img id="end-comb" src="/4comb.svg" alt="4 hexagon honeycomb abstract" />
             </div>
