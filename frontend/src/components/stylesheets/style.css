@@ -193,10 +193,10 @@ a:hover {
     color: purple;
 }
 
-#new-data {
+#no-data {
     margin-top: 10px;
     /* color: rgb(252, 238, 157); */
-    font-size: 14px;
+    font-size: 12px;
 }
 
 #end-comb {

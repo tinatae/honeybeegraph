@@ -94,16 +94,16 @@ class Graph extends React.Component {
       .append("g")
       .attr("transform", "translate(" + Margin.left + ", " + Margin.top + ")");
 
-    var xLabel = g
-      .append("text")
+    // var xLabel = g
+      g.append("text")
       .attr("x", Width / 2)
       .attr("y", Height + 50)
       .attr("font-size", "16px")
       .attr("text-anchor", "middle")
       .text("Total Number of Honey Bee Colonies Per State (#)");
 
-    var yLabel = g
-      .append("text")
+    // var yLabel = g
+      g.append("text")
       .attr("x", -140)
       .attr("y", -50)
       .attr("font-size", "16px")
@@ -466,10 +466,11 @@ class Graph extends React.Component {
                 </div>
               </div>
 
-              {/* <div id="new-data">
-                2 0 1 9&emsp;d a t a&emsp;t o&emsp;b e&emsp;r e l e a s e d&emsp;A
-                u g u s t&emsp;2 0 2 0
-              </div> */}
+              <div id="no-data">
+                Please Note: Alaska, Delaware, Nevada, New Hampshire, Rhode Island not included because individual state data not available<br/>
+                Also, Quarter 18 (4/1/19 - 6/30/19) data was entered as "N/A" for all fields in all states.
+              </div>
+
               <img id="end-comb" src="/4comb.svg" alt="4 hexagon honeycomb abstract" />
             </div>
           </div>

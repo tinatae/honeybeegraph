@@ -1,5 +1,5 @@
 # Honey Bee Graph
-D3 Graph visualizing U.S. Honey Bee Colony Inventory (2015 - 2018)
+D3 Graph visualizing U.S. Honey Bee Colony Inventory (2015 - 2020)
 
 #### Technologies:
 * D3
@@ -9,7 +9,7 @@ D3 Graph visualizing U.S. Honey Bee Colony Inventory (2015 - 2018)
 * Node.js
 
 #### Overview:
-D3 Bubble Chart showing time progression of U.S. Bee Colony Inventory between January 2015 - December 2018.
+D3 Bubble Chart showing time progression of U.S. Bee Colony Inventory between January 2015 - June 2020.
 
 #### Functionalities: 
 * Data filter
@@ -81,5 +81,4 @@ D3 Bubble Chart showing time progression of U.S. Bee Colony Inventory between Ja
       });
         
 #### Future add-ons:
-* 2019 data is set to be released August 2020 so our data will be updated then
 * An informational page about natural adversaries & detractors of colony health
