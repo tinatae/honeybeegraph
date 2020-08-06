@@ -81,5 +81,5 @@ D3 Bubble Chart showing time progression of U.S. Bee Colony Inventory between Ja
       });
         
 #### Future add-ons:
-* 2019 data is set to be released August 2020 so we will update our data then
+* 2019 data is set to be released August 2020 so our data will be updated then
 * An informational page about natural adversaries & detractors of colony health

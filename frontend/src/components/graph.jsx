@@ -30,6 +30,12 @@ const QuarterTable = {
   "14": "QTR 14 (Apr - Jun 2018)",
   "15": "QTR 15 (Jul - Sept 2018)",
   "16": "QTR 16 (Oct - Dec 2018)",
+  "17": "QTR 17 (Jan - Mar 2019)",
+  "18": "QTR 18 (Apr - Jun 2019)",
+  "19": "QTR 19 (Jul - Sept 2019)",
+  "20": "QTR 20 (Oct - Dec 2019)",
+  "21": "QTR 21 (Jan - Mar 2020)",
+  "22": "QTR 22 (Apr - Jun 2020)",
 };
 
 const LegendColor = {
@@ -55,6 +61,12 @@ const DateTable = {
   "14": "4/1/18 - 6/30/18",
   "15": "7/1/18 - 9/30/18",
   "16": "10/1/18 - 12/31/18",
+  "17": "1/1/19 - 3/31/19",
+  "18": "4/1/19 - 6/30/19",
+  "19": "7/1/19 - 9/30/19",
+  "20": "10/1/19 - 12/31/19",
+  "21": "1/1/20 - 3/31/20",
+  "22": "4/1/20 - 6/30/20",
 };
 
 class Graph extends React.Component {
@@ -213,7 +225,7 @@ class Graph extends React.Component {
     g.call(tip);
 
     jquery("#date-slider").slider({
-      max: 16,
+      max: 22,
       min: 1,
       step: 1,
       value: 1,
@@ -228,7 +240,7 @@ class Graph extends React.Component {
     jquery("#play-button").on("click", function () {
       if (jquery("#play-button").val() === "Play") {
         jquery("#play-button").text("Pause");
-        interval = setInterval(step, 500);
+        interval = setInterval(step, 430);
       } else {
         jquery("#play-button").text("Play");
         clearInterval(interval);
@@ -245,7 +257,7 @@ class Graph extends React.Component {
     });
 
     function step() {
-      time = time < 16 ? time + 1 : 0; // ONCE GO THROUGH ALL DATA, LOOP BACK
+      time = time < 22 ? time + 1 : 0; // ONCE GO THROUGH ALL DATA, LOOP BACK
       update(workingData[time]);
     }
 
@@ -368,7 +380,7 @@ class Graph extends React.Component {
                   T A T E&emsp;( U.S. )
                 </h2>
               </div>
-              <h3>( 2 0 1 5 - 2 0 1 8 )</h3>
+              <h3>( 2 0 1 5 - 2 0 2 0 )</h3>
 
               <div id="top-row">
                 <select id="percentRange-select" className="form-control">
@@ -454,10 +466,10 @@ class Graph extends React.Component {
                 </div>
               </div>
 
-              <div id="new-data">
+              {/* <div id="new-data">
                 2 0 1 9&emsp;d a t a&emsp;t o&emsp;b e&emsp;r e l e a s e d&emsp;A
                 u g u s t&emsp;2 0 2 0
-              </div>
+              </div> */}
               <img id="end-comb" src="/4comb.svg" alt="4 hexagon honeycomb abstract" />
             </div>
           </div>
