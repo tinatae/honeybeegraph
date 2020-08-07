@@ -439,10 +439,20 @@ class Graph extends React.Component {
                 </div>
               </div>
 
+              <div className="box-this">
+                <div id="no-data">
+                  Please Note: <span id="make-blue">Alaska, Delaware, Nevada, New Hampshire, Rhode Island not included in visualization</span> because individual state data not available<br />
+                </div>
+                <div id="suspended">
+                  Quarterly collection of colony data suspended for July 2019 ∴ <span id="make-blue">Quarter 18 (4/1/19 - 6/30/19) data entered as "N/A"</span> for all fields in all states.
+                {/* Data collection for July 2019 quarterly honey bee colonies was suspended ∴ Quarter 18 (4/1/19 - 6/30/19) data entered as "N/A" for all fields in all states. */}
+                </div>
+              </div>
+
               <div id="cite-source">
                 National Agricultural Statistics Service (NASS), Agricultural
                 Statistics Board, United States Department of Agriculture (USDA).
-                (2019).
+                (2020).
                 <span id="make-italic"> Honey Bee Colonies</span> [Data set].
                 United States Department of Agriculture / Economics, Statistics
                 and Market Information System. Retrieved from{" "}
@@ -465,16 +475,6 @@ class Graph extends React.Component {
                   </div>
                 </div>
               </div>
-
-            <div className="box-this">
-              <div id="no-data">
-                Please Note: <span id="make-blue">Alaska, Delaware, Nevada, New Hampshire, Rhode Island not included in visualization</span> because individual state data not available<br/>
-              </div>
-              <div id="suspended">
-                Quarterly collection of colony data suspended for July 2019 ∴ <span id="make-blue">Quarter 18 (4/1/19 - 6/30/19) data entered as "N/A"</span> for all fields in all states.
-                {/* Data collection for July 2019 quarterly honey bee colonies was suspended ∴ Quarter 18 (4/1/19 - 6/30/19) data entered as "N/A" for all fields in all states. */}
-              </div>
-            </div>
 
               <img id="end-comb" src="/4comb.svg" alt="4 hexagon honeycomb abstract" />
             </div>
