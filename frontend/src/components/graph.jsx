@@ -178,46 +178,41 @@ class Graph extends React.Component {
       .attr("className", "d3-tip")
       .html(function (d) {
         var text =
-          "<span style='font-size:13px;'>Name:</span> <span style='font-size:13px; color:blue; text-transform:capitalize; font-weight:600;;'>" +
+          "<span style='font-size:12px;'>Name:</span> <span style='font-size:12px; color:blue; text-transform:capitalize; font-weight:600;;'>" +
           d.state +
           "</span><br>";
         text +=
-          "<span style='font-size:13px;'>Data Period:</span> <span style='font-size:13px; color:blue; font-weight:600;'>" +
+          "<span style='font-size:12px;'>Data Period:</span> <span style='font-size:12px; color:blue; font-weight:600;'>" +
           DateTable[d.table] +
           "</span><br>";
         text +=
-          "<span style='font-size:13px;'>Total Number of Colonies:</span> <span style='font-size:13px; color:blue; font-weight:600;'>" +
+          "<span style='font-size:12px;'>Total # of Colonies:</span> <span style='font-size:12px; color:blue; font-weight:600;'>" +
           d3.format(",.0f")(d.total) +
           " Colonies" +
           "</span><br>";
         text +=
-          "<span style='font-size:13px;'>Lost:</span> <span style='font-size:13px; color:rgb(210, 22, 22); font-weight:600;'>" +
+          "<span style='font-size:12px;'>Lost:</span> <span style='font-size:12px; color:rgb(210, 22, 22); font-weight:600;'>" +
           d3.format(",.0f")(d.lost) +
           " Colonies" +
           "</span><br>";
         text +=
-          "<span style='font-size:13px;'>Percent Lost:</span> <span style='font-size:13px; color:rgb(210, 22, 22); font-weight:600;'>" +
+          "<span style='font-size:12px;'>Percent Lost:</span> <span style='font-size:12px; color:rgb(210, 22, 22); font-weight:600;'>" +
           d.percent_lost +
           "%" +
           "</span><br>";
         text +=
-          "<span style='font-size:13px;'>Added:</span> <span style='font-size:13px; color:#5F0B0B;font-weight:600;'>" +
+          "<span style='font-size:12px;'>Added:</span> <span style='font-size:12px; color:#5F0B0B;font-weight:600;'>" +
           d3.format(",.0f")(d.added) +
           " Colonies" +
           "</span><br>";
         text +=
-          "<span style='font-size:13px;'>Renovated:</span> <span style='font-size:13px; color:#5F0B0B; font-weight:600;'>" +
+          "<span style='font-size:12px;'>Renovated:</span> <span style='font-size:12px; color:#5F0B0B; font-weight:600;'>" +
           d3.format(",.0f")(d.renovated) +
           " Colonies" +
           "</span><br>";
-        // text +=
-        //   "<span style='font-size:14px;'>Net Difference:</span> <span style='font-size:14px;color:blue;font-weight:600;'>" +
-        //   d3.format(",.0f")(d.net) +
-        //   " Colonies" +
-        //   "</span><br>";
         return text;
       });
-    tip.style("background-color", "white").style("padding", "3px").style("border", "1px solid black").style("z-index", "99999").style("margin-left", "-30px")
+      tip.style("background-color", "white").style("padding", "3px").style("border", "1px solid black").style("z-index", "999").style("width", "205px")
     g.call(tip);
 
     jquery("#date-slider").slider({
@@ -299,7 +294,7 @@ class Graph extends React.Component {
           }
         })
         .on("mouseover", tip.show) // EVENT HANDLERS ADDED BEFORE UPDATE
-        .on("mouseout", tip.hide)
+        .on("mouseout", tip.hide)      
         .merge(circles) // UPDATES OLD ELEMENTS PRESENT IN NEW DATA
         .transition(t)
         .transition(d3.transition().duration(500)) // SWAP OUT FOR VARIABLE
@@ -441,7 +436,6 @@ class Graph extends React.Component {
                 </div>
                 <div id="suspended">
                   Quarterly collection of colony data suspended for July 2019 ∴ <span id="make-blue">Quarter 18 (4/1/19 - 6/30/19) data entered as "N/A"</span> for all fields in all states.
-                {/* Data collection for July 2019 quarterly honey bee colonies was suspended ∴ Quarter 18 (4/1/19 - 6/30/19) data entered as "N/A" for all fields in all states. */}
                 </div>
               </div>
 
