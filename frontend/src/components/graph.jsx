@@ -217,7 +217,7 @@ class Graph extends React.Component {
         //   "</span><br>";
         return text;
       });
-    tip.style("background-color", "white").style("padding", "3px").style("border", "1px solid black")
+    tip.style("background-color", "white").style("padding", "3px").style("border", "1px solid black").style("z-index", "99999").style("margin-left", "-30px")
     g.call(tip);
 
     jquery("#date-slider").slider({
