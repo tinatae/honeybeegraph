@@ -13,13 +13,6 @@ const Margin = { left: 80, right: 20, top: 20, bottom: 100 };
 const Width = 650 - Margin.left - Margin.right;
 const Height = 400 - Margin.top - Margin.bottom;
 
-// const Margin = { left: window.innerWidth*0.092, right: window.innerWidth*0.02, top: window.innerWidth*0.02, bottom: window.innerWidth*0.11};
-// const Width = window.innerWidth*0.66 - Margin.left - Margin.right;
-// const Height = window.innerHeight*0.8 - Margin.top - Margin.bottom;
-// console.log(window.innerWidth)
-// console.log(window.innerHeight)
-
-
 const QuarterTable = {
   "1": "QTR 1 (Jan - Mar 2015)",
   "2": "QTR 2 (Apr - Jun 2015)",
@@ -108,8 +101,6 @@ class Graph extends React.Component {
       .text("Total Number of Honey Bee Colonies Per State (#)");
      
       g.append("text")
-      // .attr("x", -(window.innerWidth*0.16))
-      // .attr("y", -(window.innerWidth*0.057))
       .attr("x", -140)
       .attr("y", -40)
       .attr("font-size", "16px")
@@ -127,7 +118,6 @@ class Graph extends React.Component {
     var xAxisCall = d3
       .axisBottom(x)
       .tickValues([10, 1000, 10000, 100000, 1000000])
-      // .tickValues([10, 1000, 10000, 100000, 1000000, 10000000])
       .tickFormat(d3.format(",.2r"));
     g.append("g")
       .attr("className", "x axis")
@@ -188,35 +178,35 @@ class Graph extends React.Component {
       .attr("className", "d3-tip")
       .html(function (d) {
         var text =
-          "<span style='font-size:14px;'>Name:</span> <span style='font-size:14px;color:blue;text-transform:capitalize;font-weight:600;'>" +
+          "<span style='font-size:13px;'>Name:</span> <span style='font-size:13px; color:blue; text-transform:capitalize; font-weight:600;;'>" +
           d.state +
           "</span><br>";
         text +=
-          "<span style='font-size:14px;'>Data Period:</span> <span style='font-size:14px;color:blue;font-weight:600;'>" +
+          "<span style='font-size:13px;'>Data Period:</span> <span style='font-size:13px; color:blue; font-weight:600;'>" +
           DateTable[d.table] +
           "</span><br>";
         text +=
-          "<span style='font-size:14px;'>Total Number of Colonies:</span> <span style='font-size:14px;color:blue;font-weight:600;'>" +
+          "<span style='font-size:13px;'>Total Number of Colonies:</span> <span style='font-size:13px; color:blue; font-weight:600;'>" +
           d3.format(",.0f")(d.total) +
           " Colonies" +
           "</span><br>";
         text +=
-          "<span style='font-size:14px;'>Lost:</span> <span style='font-size:14px;color:rgb(210, 22, 22);font-weight:600;'>" +
+          "<span style='font-size:13px;'>Lost:</span> <span style='font-size:13px; color:rgb(210, 22, 22); font-weight:600;'>" +
           d3.format(",.0f")(d.lost) +
           " Colonies" +
           "</span><br>";
         text +=
-          "<span style='font-size:14px;'>Percent Lost:</span> <span style='font-size:14px;color:rgb(210, 22, 22);font-weight:600;'>" +
+          "<span style='font-size:13px;'>Percent Lost:</span> <span style='font-size:13px; color:rgb(210, 22, 22); font-weight:600;'>" +
           d.percent_lost +
           "%" +
           "</span><br>";
         text +=
-          "<span style='font-size:14px;'>Added:</span> <span style='font-size:14px;color:#5F0B0B;font-weight:600;'>" +
+          "<span style='font-size:13px;'>Added:</span> <span style='font-size:13px; color:#5F0B0B;font-weight:600;'>" +
           d3.format(",.0f")(d.added) +
           " Colonies" +
           "</span><br>";
         text +=
-          "<span style='font-size:14px;'>Renovated:</span> <span style='font-size:14px;color:#5F0B0B;font-weight:600;'>" +
+          "<span style='font-size:13px;'>Renovated:</span> <span style='font-size:13px; color:#5F0B0B; font-weight:600;'>" +
           d3.format(",.0f")(d.renovated) +
           " Colonies" +
           "</span><br>";
@@ -227,7 +217,7 @@ class Graph extends React.Component {
         //   "</span><br>";
         return text;
       });
-
+    tip.style("background-color", "white").style("padding", "3px").style("border", "1px solid black")
     g.call(tip);
 
     jquery("#date-slider").slider({
