@@ -6,28 +6,10 @@
     border-radius: 7px;
 }
 
-.whole {
-    background-color: rgb(252, 238, 157);
-    /* background-color: rgb(223, 161, 4); */
-    color: black;
-    border-radius: 7px; 
-    border: 2px solid rgb(150, 7, 7);
-    margin-top: 20px;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    margin-left: 150px;
-    margin-right: 150px;
-    text-align: center;
-    font-weight: bold;
-    font-family: Palatino Linotype;
-    /* color: rgb(150, 7, 7); */
-}
-
 #me {
-    display: flex;
-    align-items: center;
-    margin-left: 950px;
-    margin-top: 0px;
+    display: inline-flex;
+    float: right;
+    padding: 20px;
 }
 
 #link {
@@ -41,6 +23,21 @@
     color: rgb(66, 7, 7);
 }
 
+.whole {
+    background-color: rgb(252, 238, 157);
+    color: black;
+    border-radius: 7px; 
+    border: 2px solid rgb(150, 7, 7);
+    margin-top: 20px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    margin-left: 150px;
+    margin-right: 150px;
+    text-align: center;
+    font-weight: bold;
+    font-family: Palatino Linotype;
+}
+
 #title {
     display: flex;
     align-items: center;
@@ -48,7 +45,7 @@
     margin-top: -15px;
 }
 
-#svg {
+#comb-4 {
     width: 54px;
     height: 41px;
     margin-top: 12px;
@@ -144,6 +141,7 @@ button:hover {
 }
 
 
+
 .asterisk {
     margin-top: -28px;   
     font-size: 12px;
@@ -173,7 +171,7 @@ button:hover {
     margin-top: 5px;
 }
 
-#artist div:nth-child(1) {
+#artist div:first-child {
     margin-right: 3px;
     margin-top: -1px;
 }
@@ -200,11 +198,6 @@ a:hover {
     margin-left: 30px;
     margin-right: 30px;
     margin-top: 20px;
-}
-
-#no-data {
-    /* margin-top: 10px; */
-    /* color: rgb(252, 238, 157); */
     font-size: 12px;
 }
 
@@ -214,7 +207,6 @@ a:hover {
 
 #suspended {
     margin-top: 5px;
-    font-size: 12px;
 }
 
 #end-comb {
@@ -222,4 +214,119 @@ a:hover {
     height: 35px;
     width: 47px;
     margin-bottom: 10px;
+}
+
+/* MOBILE ---------------------------------------------------------------------------------------------*/
+
+@media only screen and (max-device-width: 480px) {
+    #me {
+        /* display: inline-flex;
+        float: right; */
+        padding: 10px;
+    }
+
+    #link {
+        font-size: 22px;
+    }
+
+    .whole {
+        margin: 40px 7px 20px;
+    }
+
+    #title {
+        margin-top: 8px;
+    }
+
+    #comb-4 {
+        display: none;
+    }
+
+    h2 {
+        font-size: 13px;
+        margin-left: 0px;
+    }
+
+    h3 {
+        margin-top: 0px;
+        font-size: 14px;
+    }
+
+    #top-row {
+        width: 100%;
+        display: flex;
+        flex-direction: column-reverse;
+        margin-top: 15px;
+        margin-left: 0;
+    }
+
+    select {
+        margin-top: 15px;
+        margin-left: 200px;
+    }
+
+    button {
+        width: 50px;
+        background-color: white;
+        margin-top: 8px;
+    }
+
+    #slider-label {
+        font-size: 12px;
+    }
+
+    .ui-slider-horizontal {
+        height: 3px;
+    }
+
+    .ui-slider .ui-slider-handle{
+        width:18px; 
+        height:18px; 
+    }
+
+    #jquery-buttons {
+        margin-top: -2px;
+    }
+
+    #chart-area {
+        transform: scale(0.58);
+        margin-left: -108px;
+        margin-top: -82px;
+    }
+
+    .asterisk {
+        font-size: 9px;
+        margin-bottom: 10px;
+        margin: -90px 10px 10px;
+    }
+
+    #cite-source {
+        font-size: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    #artist {
+        margin-top: 10px;
+        font-size: 10px;
+    }
+
+    .box-this {
+        font-size: 10px;
+    }
+
+    #no-data {
+        margin-top: 10px;
+    }
+
+    #suspended {
+        margin-top: 5px;
+    }
+
+    #end-comb {
+        margin-top: 10px;
+        height: 30px;
+        width: 40px;
+        margin-bottom: 5px;
+    }
+
 }

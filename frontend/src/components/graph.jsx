@@ -7,11 +7,18 @@ import "./stylesheets/jquery-ui.min.css";
 import "./stylesheets/jquery-ui.structure.min.css";
 import "./stylesheets/jquery-ui.theme.min.css";
 import "./stylesheets/style.css";
-
+import { forceCenter } from "d3";
 
 const Margin = { left: 80, right: 20, top: 20, bottom: 100 };
 const Width = 650 - Margin.left - Margin.right;
 const Height = 400 - Margin.top - Margin.bottom;
+
+// const Margin = { left: window.innerWidth*0.092, right: window.innerWidth*0.02, top: window.innerWidth*0.02, bottom: window.innerWidth*0.11};
+// const Width = window.innerWidth*0.66 - Margin.left - Margin.right;
+// const Height = window.innerHeight*0.8 - Margin.top - Margin.bottom;
+// console.log(window.innerWidth)
+// console.log(window.innerHeight)
+
 
 const QuarterTable = {
   "1": "QTR 1 (Jan - Mar 2015)",
@@ -40,7 +47,6 @@ const QuarterTable = {
 
 const LegendColor = {
   "NET LOSS *": "rgb(252, 238, 157)",
-  // "Net Loss *": "rgb(210, 22, 22)",
   "BALANCE / NET GAIN **": "rgb(255, 185, 8)",
 };
 
@@ -77,7 +83,7 @@ class Graph extends React.Component {
       playButton: "Play",
     };
 
-    this.handleClick = this.handleClick.bind(this);
+    this.handleClick = this.handleClick.bind(this)
   }
 
   componentDidMount() {
@@ -94,18 +100,18 @@ class Graph extends React.Component {
       .append("g")
       .attr("transform", "translate(" + Margin.left + ", " + Margin.top + ")");
 
-    // var xLabel = g
       g.append("text")
-      .attr("x", Width / 2)
-      .attr("y", Height + 50)
+      .attr("x", Width/2)
+      .attr("y", Height+50)
       .attr("font-size", "16px")
       .attr("text-anchor", "middle")
       .text("Total Number of Honey Bee Colonies Per State (#)");
-
-    // var yLabel = g
+     
       g.append("text")
+      // .attr("x", -(window.innerWidth*0.16))
+      // .attr("y", -(window.innerWidth*0.057))
       .attr("x", -140)
-      .attr("y", -50)
+      .attr("y", -40)
       .attr("font-size", "16px")
       .attr("text-anchor", "middle")
       .attr("transform", "rotate(-90)")
@@ -333,13 +339,12 @@ class Graph extends React.Component {
   }
 
     render() {
-
+ 
       if (this.props.data) {
 
         return (
           <div className="outer">
-            <div className="whole">
-              <div id="me">
+            <div id="me">
                 <div>
                   <i
                     id="link"
@@ -371,13 +376,14 @@ class Graph extends React.Component {
                     )
                   }></i>
                 </div>
-              </div>
+            </div>
 
+
+            <div className="whole">
               <div id="title">
-                <img id="svg" src="/4comb.svg" alt="4 hexagon honeycomb abstract" />
+                <img id="comb-4" src="/4comb.svg" alt="4 hexagon honeycomb abstract" />
                 <h2>
-                  H O N E Y B E E&emsp;C O L O N Y&emsp;C O U N T&emsp;B Y&emsp;S
-                  T A T E&emsp;( U.S. )
+                  H&nbsp;O&nbsp;N&nbsp;E&nbsp;Y&nbsp;B&nbsp;E&nbsp;E&emsp;C&nbsp;O&nbsp;L&nbsp;O&nbsp;N&nbsp;Y&emsp;C&nbsp;O&nbsp;U&nbsp;N&nbsp;T&emsp;B&nbsp;Y&emsp;S&nbsp;T&nbsp;A&nbsp;T&nbsp;E&emsp;( U.S. )
                 </h2>
               </div>
               <h3>( 2 0 1 5 - 2 0 2 0 )</h3>
@@ -424,7 +430,7 @@ class Graph extends React.Component {
               </div>
 
               <div>
-                <div ref="chartArea"></div>
+                <div id="chart-area" ref="chartArea"></div>
 
                 <div className="asterisk">
                   <div>
