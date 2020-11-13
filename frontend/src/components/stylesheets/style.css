@@ -4,17 +4,21 @@
     margin-top: 0;
     border: 1px solid #5F0B0B;
     border-radius: 7px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 #me {
-    display: inline-flex;
-    float: right;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
     padding: 20px;
 }
 
 #link {
     color: rgb(150, 7, 7);
-    text-align: right;
     font-size: 25px;
     margin-left: 15px;
 }
@@ -28,14 +32,14 @@
     color: black;
     border-radius: 7px; 
     border: 2px solid rgb(150, 7, 7);
-    margin-top: 20px;
     padding-bottom: 10px;
-    margin-bottom: 20px;
-    margin-left: 150px;
-    margin-right: 150px;
     text-align: center;
     font-weight: bold;
     font-family: Palatino Linotype;
+    margin: 0px 20% 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #title {
@@ -54,7 +58,6 @@
 }
 
 h2 {
-    /* margin-top: 10px; */
     font-size: 18px;
 }
 
@@ -68,8 +71,7 @@ h3 {
    align-items: center;
    justify-content: center;
    margin-top: 20px;
-   margin-left: 10%;
-   /* margin-right: 130px; */
+   margin-left: 5%;
 }
 
 select {
@@ -140,20 +142,24 @@ button:hover {
    margin-left: 10px;
 }
 
-
+.whole-chart-section {
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+}
 
 .asterisk {
     margin-top: -28px;   
     font-size: 12px;
     margin-bottom: 10px;
-    text-align: left;
-    margin-left: 24%;
-    /* color: #5F0B0B; */
-    color: rgb(150, 7, 7)
+    color: rgb(150, 7, 7);
+    display: flex;
+    flex-direction: column;
+    margin-left: 5%;
 }
 
-.asterisk div:nth-child(2) {
-    margin-left: 2px;
+.asterisk div {
+    text-align: left;
 }
 
 #cite-source {
@@ -216,16 +222,130 @@ a:hover {
     margin-bottom: 10px;
 }
 
-.d3-tip {
-    background-color: white;
-}
-
 /* MOBILE ---------------------------------------------------------------------------------------------*/
 
-@media only screen and (max-device-width: 480px) {
+@media only screen and (min-device-width: 320px) and (max-device-width: 900px) and (orientation: landscape) {
     #me {
-        /* display: inline-flex;
-        float: right; */
+        padding: 10px;
+    }
+
+    #link {
+        font-size: 23px;
+    }
+
+    .whole {
+        margin: 40px 5% 20px;
+    }
+
+    #title {
+        margin-top: 6px;
+    }
+
+    h2, h3 {
+        font-size: 14px;
+    }
+
+    #top-row {
+        margin-top: 12px;
+    }
+
+    #slider-label {
+        font-size: 13px;
+    }
+
+    #date-slider {
+        width: 160px;
+    }
+
+    .ui-slider-horizontal {
+        height: 3px;
+    }
+
+    .ui-slider .ui-slider-handle{
+        width:18px; 
+        height:18px; 
+    }
+
+    #chart-area {
+        transform: scale(0.85);
+        margin-top: -10px;
+    }
+
+    .asterisk {
+        margin-top: -50px;   
+        margin-left: 0;
+        text-align: center;
+        font-size: 11px;
+    }
+
+    .asterisk div {
+        float: left;
+    }
+
+    .asterisk div:nth-child(2) {
+        margin-left: 2px;
+    }
+
+    #cite-source {
+        text-align: center;
+        font-size: 11px;
+        margin-left: 40px;
+        margin-right: 40px;
+        margin-top: 20px;
+    }
+
+    #artist {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    #artist div:first-child {
+        margin-right: 3px;
+        margin-top: -1px;
+    }
+
+    #make-underline {
+        margin-bottom: 15px;
+    }
+
+    a {
+        color: black;
+    }
+
+    a:hover {
+        color: purple;
+    }
+
+    .box-this {
+        border: 1px solid black;
+        padding: 10px;
+        margin-left: 40px;
+        margin-right: 40px;
+        margin-top: 20px;
+        font-size: 11px;
+    }
+
+    #make-blue {
+        color: blue
+    }
+
+    #suspended {
+        margin-top: 5px;
+    }
+
+    #end-comb {
+        margin-top: 15px;
+        height: 35px;
+        width: 47px;
+        margin-bottom: 10px;
+    }
+
+}
+
+@media only screen and (max-device-width: 480px) and (orientation: portrait) {
+    #me {
         padding: 10px;
     }
 
@@ -234,13 +354,7 @@ a:hover {
     }
 
     .whole {
-        margin: 40px 7px 20px;
-    }
-
-    #title {
-        margin-top: 8px;
-        margin-left: 5px;
-        margin-right: 5px;
+        margin: 0px 7px 20px;
     }
 
     #comb-4 {
@@ -290,42 +404,35 @@ a:hover {
     }
 
     #jquery-buttons {
-        margin-top: -2px;
+        margin-top: 0px;
     }
 
     #chart-area {
         transform: scale(0.58);
-        margin-left: -108px;
         margin-top: -82px;
     }
 
     .asterisk {
-        font-size: 9px;
-        margin-bottom: 10px;
-        margin: -90px 10px 10px;
+        font-size: 8px;
+        margin-top: -100px;
+        margin-left: 0px;
     }
 
     #cite-source {
-        font-size: 10px;
+        font-size: 9px;
         margin-left: 10px;
         margin-right: 10px;
+        margin-top: 5px;
     }
 
     #artist {
         margin-top: 10px;
-        font-size: 10px;
+        font-size: 9px;
     }
 
     .box-this {
         font-size: 10px;
-    }
-
-    #no-data {
-        margin-top: 10px;
-    }
-
-    #suspended {
-        margin-top: 5px;
+        margin: 5px 20px 5px
     }
 
     #end-comb {

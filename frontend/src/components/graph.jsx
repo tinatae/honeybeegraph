@@ -414,7 +414,7 @@ class Graph extends React.Component {
                 </div>
               </div>
 
-              <div>
+              <div className="whole-chart-section">
                 <div id="chart-area" ref="chartArea"></div>
 
                 <div className="asterisk">
