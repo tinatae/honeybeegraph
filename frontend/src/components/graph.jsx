@@ -368,7 +368,7 @@ class Graph extends React.Component {
               <div id="title">
                 <img id="comb-4" src="/4comb.svg" alt="4 hexagon honeycomb abstract" />
                 <h2>
-                  H&nbsp;O&nbsp;N&nbsp;E&nbsp;Y&nbsp;B&nbsp;E&nbsp;E&emsp;C&nbsp;O&nbsp;L&nbsp;O&nbsp;N&nbsp;Y&emsp;C&nbsp;O&nbsp;U&nbsp;N&nbsp;T&emsp;B&nbsp;Y&emsp;S&nbsp;T&nbsp;A&nbsp;T&nbsp;E&emsp;( U.S. )
+                  H&nbsp;O&nbsp;N&nbsp;E&nbsp;Y&nbsp;B&nbsp;E&nbsp;E&emsp;C&nbsp;O&nbsp;L&nbsp;O&nbsp;N&nbsp;Y&emsp;C&nbsp;O&nbsp;U&nbsp;N&nbsp;T&emsp;B&nbsp;Y&emsp;S&nbsp;T&nbsp;A&nbsp;T&nbsp;E&emsp;(&nbsp;U.S.&nbsp;)
                 </h2>
               </div>
               <h3>( 2 0 1 5 - 2 0 2 0 )</h3>

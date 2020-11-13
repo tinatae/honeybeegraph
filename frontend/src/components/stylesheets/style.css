@@ -47,6 +47,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 0px;
+    padding: 2px
 }
 
 #comb-4 {
@@ -224,7 +225,8 @@ a:hover {
 
 /* MOBILE ---------------------------------------------------------------------------------------------*/
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 900px) and (orientation: landscape) {
+@media only screen and (max-device-width: 480px) and (orientation: landscape) {
+/* @media only screen and (min-device-width: 320px) and (max-device-width: 900px) and (orientation: landscape) { */
     #me {
         padding: 10px;
     }
