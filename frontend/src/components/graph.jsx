@@ -1,13 +1,11 @@
 import React from "react";
 import d3tip from "d3-tip";
 import * as d3 from "d3";
-import jquery from "jquery";
 import * as jqueryui from "jquery-ui-bundle";
 import "./stylesheets/jquery-ui.min.css";
 import "./stylesheets/jquery-ui.structure.min.css";
 import "./stylesheets/jquery-ui.theme.min.css";
 import "./stylesheets/style.css";
-import { forceCenter } from "d3";
 
 const Margin = { left: 80, right: 20, top: 20, bottom: 100 };
 const Width = 650 - Margin.left - Margin.right;
@@ -85,6 +83,8 @@ class Graph extends React.Component {
   }
 
   drawChart(data) {
+    var $ = require("jquery");
+
     const g = d3
       .select(this.refs.chartArea)
       .append("svg")
@@ -215,7 +215,7 @@ class Graph extends React.Component {
       tip.style("background-color", "white").style("padding", "3px").style("border", "1px solid black").style("z-index", "999").style("width", "205px")
     g.call(tip);
 
-    jquery("#date-slider").slider({
+    $("#date-slider").slider({
       max: 22,
       min: 1,
       step: 1,
@@ -228,22 +228,22 @@ class Graph extends React.Component {
 
     update(workingData[0]);
 
-    jquery("#play-button").on("click", function () {
-      if (jquery("#play-button").val() === "Play") {
-        jquery("#play-button").text("Pause");
+    $("#play-button").on("click", function() {
+      if (this.innerHTML === "Play") {
+        this.textContent = "Pause";
         interval = setInterval(step, 430);
       } else {
-        jquery("#play-button").text("Play");
+        this.textContent = "Play";
         clearInterval(interval);
       }
     });
 
-    jquery("#reset-button").on("click", function () {
+    $("#reset-button").on("click", function() {
       time = 0;
       update(workingData[0]);
     });
 
-    jquery("#percentRange-select").on("change", function () {
+    $("#percentRange-select").on("change", function() {
       update(workingData[time]);
     });
 
@@ -256,7 +256,7 @@ class Graph extends React.Component {
 
       var t = d3.transition().duration(250);
 
-      var percentRange = jquery("#percentRange-select").val();
+      var percentRange = $("#percentRange-select").val();
 
       var currentData = data.filter(function (d) {
         if (percentRange === "all") {
@@ -310,8 +310,8 @@ class Graph extends React.Component {
 
       timeLabel.text(QuarterTable[time + 1]);
 
-      jquery("#period")[0].innerHTML = time + 1;
-      jquery("#date-slider").slider("value", time + 1);
+      $("#period")[0].innerHTML = time + 1;
+      $("#date-slider").slider("value", time + 1);
     }
   }
 
@@ -478,4 +478,24 @@ class Graph extends React.Component {
   }
 
   export default Graph;
+
+
+    // document.getElementById("play-button").addEventListener("click", function() {
+    //   if (this.value === "Play") {
+    //     this.textContent = "Pause";
+    //     interval = setInterval(step, 430);
+    //   } else {
+    //     this.textContent = "Play";
+    //     clearInterval(interval);
+    //   }
+    // });
+
+    // document.getElementById("reset-button").addEventListener("click", function() {
+    //   time = 0;
+    //   update(workingData[0]);
+    // });
+
+    // document.getElementById("percentRange-select").addEventListener("change", function() {
+    //   update(workingData[time]);
+    // });
 
